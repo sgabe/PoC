@@ -1,0 +1,814 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
+    <meta http-equiv="Content-Security-Policy" content="disown-opener; referrer no-referrer;"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@berendjanwever"/>
+    <meta name="twitter:title" content="OOBR[0x98]+0 853.699 @ harness.exe!gdiplus.dll!bHandleFillRgn"/>
+    <meta name="twitter:description" content="An Access Violation exception happened at 0x7665000 while attempting to read memory at 0x7665000; at the end of a 152/0x98 bytes heap block at 0x7664F68. This indicates an Out-Of-Bounds (OOB) access bug was triggered."/>
+    <title>OOBR[0x98]+0 853.699 @ harness.exe!gdiplus.dll!bHandleFillRgn</title>
+    <style>
+      * {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        border-spacing: 0;
+        border-collapse: collapse;
+        color: inherit;
+        background: transparent;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        font-size: inherit;
+      }
+      html {
+        overflow-y: scroll; /* prevent center jumping */
+        color: rgba(22, 19, 16, 1);
+        background: #E5E2DE;
+        font-weight: 400;
+        padding: 1em;
+        font-family: Monospace;
+      }
+      body {
+        margin: auto;
+        max-width: 80em;
+      }
+      h1, h2, h3, h4, h5 {
+        font-weight: 700;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+        margin-bottom: -1px;
+      }
+      :link {
+        border-bottom: 1px dotted rgba(0,0, 238, 0.25);
+      }
+      :link:hover, :link:active {
+        border-bottom: 1px solid rgba(0,0, 238, 1);
+      }
+      :visited {
+        border-bottom: 1px dotted rgba(85, 26, 139, 0.25);
+      }
+      :visited:hover, :visited:active {
+        border-bottom: 1px solid rgba(85, 26, 139, 1);
+      }
+      table {
+        border-spacing: 0;
+        border-collapse: collapse;
+      }
+      ul, ol {
+        padding-left: 2em;
+      }
+      h1 {
+        padding: 0.5em 1em 0.5em 1em;
+        color: rgba(255, 251, 247, 1);
+        background-color: rgba(22, 19, 16, 1);
+        font-size: 120%;
+        margin-bottom: 0.5em;
+      }
+      h2 {
+        font-size: 120%;
+      }
+      td:first-child {
+        white-space: pre;
+      }
+      td {
+        vertical-align: top;
+      }
+      sup, sub {
+        font-size: 50%;
+      }
+      hr {
+        border: dotted black;
+        border-width: 0 0 1pt 0;
+      }
+      .HexNumberHeader {
+        opacity: 0.25;
+      }
+      .Block {
+        padding: 1em;
+        border: 1px solid rgba(22, 19, 16, 0.2);
+        border-radius: 0.5em;
+        background-color: rgba(255, 251, 247, 1);
+        box-shadow: 0 1em   2em rgba(22, 19, 16, 0.2),
+                    0 1em   1em rgba(22, 19, 16, 0.05),
+                    0 1em 0.5em rgba(22, 19, 16, 0.05);
+        margin-bottom: 1em;
+        display: block;
+      }
+      .Content {
+        overflow-x: auto;
+      }
+      .Collapsible > .Content,
+      .Collapsed > .CollapsedPlaceholder {
+        display: block;
+      }
+      .Collapsible > .CollapsedPlaceholder,
+      .Collapsed > .Content {
+        display: none;
+      }
+      .BlockHeaderIcon {
+        float: right;
+        vertical-align: top;
+        border: 1px solid rgba(255, 251, 247, 1);
+      }
+      .Collapsible .BlockHeaderIcon {
+        padding: 1px 0.8em 0 0;
+      }
+      .Collapsed .BlockHeaderIcon {
+        padding: 0.8em 0.8em 0 0;
+      }
+      .Footer {
+        padding: 1em;
+        text-align: center;
+      }
+      .Important {
+        background-color: rgba(255,255,0,0.3);
+      }
+      .SecurityImpact {
+        background-color: rgba(255,0,0,0.2);
+      }
+      .CDBPrompt {
+        white-space: pre;
+      }
+      .CDBCommand {
+        font-weight: bold;
+        white-space: pre;
+      }
+      .CDBComment {
+        font-weight: bold;
+        white-space: pre;
+        background-color: rgba(255,255,0,0.1);
+      }
+      .CDBCommandResult {
+        font-weight: bold;
+        white-space: pre;
+      }
+      .CDBStdOut {
+        color: grey;
+        white-space: pre;
+      }
+      .CDBOrApplicationStdOut {
+        font-weight: bold;
+        color: navy;
+        background-color: rgba(255,255,0,0.3);
+        white-space: pre;
+      }
+      .CDBStdErr {
+        color: maroon;
+        white-space: pre;
+      }
+      .CDBIgnoredException {
+        color: grey;
+        white-space: pre;
+      }
+      .BinaryInformation, .Memory, .Registers, .Stack {
+        white-space: pre;
+      }
+      table.Registers {
+        border-spacing: 1ex 0;
+        border-collapse: separate;
+      }
+      table.Registers td + td {
+        padding-left: 1ex;
+        border-left: 1px solid rgba(0,0,0, 0.25);
+      }
+      .DisassemblyInformation {
+      }
+      .DisassemblyAddress {
+        color: grey;
+      }
+      .DisassemblyOpcode {
+        color: grey;
+      }
+      .DisassemblyInstruction {
+      }
+      .MemoryAddress {
+        color: grey;
+        padding-right: 0.5em;
+      }
+      .MemoryInaccessible {
+        color: grey;
+        text-align: center;
+      }
+      .MemoryBytes {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+      .MemoryChars {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+      .MemoryPointer {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+      .MemoryPointerSymbol {
+        padding-left: 0.5em;
+      }
+      .MemoryRemarks {
+        background-color: rgba(255,255,0,0.3);
+      }
+      .StackFrame {
+      }
+      .StackFrameInline {
+        color: silver;
+      }
+      .StackFrameHidden {
+        color: silver;
+      }
+      .StackFramePartOfId {
+        background-color: rgba(255,255,0,0.3);
+        font-weight: bold;
+      }
+      .StackFrameWithoutSymbol {
+        font-style: italic;
+      }
+      .StackFrameNotes {
+      }
+      .StackFrameSource {
+        color: grey;
+      }
+      .LogProcess {
+      }
+      .LogException {
+      }
+      .LogBreakpoint {
+      }
+      .LogEmbeddedCommandsBreakpoint {
+      }
+      .LogStdErrOutput {
+        color: maroon;
+      }
+      .LogImportantStdErrOutput {
+      }
+      .LogStdOutOutput {
+        font-weight: bold;
+      }
+      .LogImportantStdOutOutput {
+      }
+      .LogMessage {
+      }
+    </style>
+    <script>
+      function fAddClickHandler(oBlockHeaderElement) {
+        var oBlockElement = oBlockHeaderElement.parentElement,
+            bCollapsedPlaceholdersRemoved = false;
+        oBlockHeaderElement.onclick = function () {
+          oBlockElement.className = oBlockElement.className.replace(
+            /\b(Collapsed|Collapsible)\b/,
+            function (sCurrentClassName) {
+              return {"Collapsible": "Collapsed", "Collapsed": "Collapsible"}[sCurrentClassName];
+            }
+          );
+          if (!bCollapsedPlaceholdersRemoved) {
+            // A copy of this list is needed as it is dynamic and we plan to remove elements.
+            var aoCollapsedPlaceholderElements = Array.prototype.slice.call(document.getElementsByClassName("CollapsedPlaceholder"));
+            for (var u = 0; u < aoCollapsedPlaceholderElements.length; u++) {
+              var oCollapsedPlaceholderElement = aoCollapsedPlaceholderElements[u];
+              oCollapsedPlaceholderElement.parentNode.removeChild(oCollapsedPlaceholderElement);
+            };
+          };
+        };
+      };
+      onload = function() {
+        var aoBlockHeaderElements = document.getElementsByClassName("BlockHeader");
+        for (var u = 0; u < aoBlockHeaderElements.length; u++) {
+          fAddClickHandler(aoBlockHeaderElements[u]);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div class="Block Collapsible">
+      <h1 class="BlockHeader">BugId OOBR[0x98]+0 853.699 @ harness.exe!gdiplus.dll!bHandleFillRgn summary<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <table>
+          <tr><td>BugId:           </td><td><span class="Important"><b>OOBR[0x98]+0 853.699</b></span></td></tr>
+
+          <tr><td>Location:        </td><td><span class="Important">harness.exe!gdiplus.dll!bHandleFillRgn</span></td></tr>
+
+          <tr><td>Description:     </td><td><span class="Important">An Access Violation exception happened at 0x7665000 while attempting to read memory at 0x7665000; at the end of a 152/0x98 bytes heap block at 0x7664F68. This indicates an Out-Of-Bounds (OOB) access bug was triggered.</span></td></tr>
+          <tr><td>Version:         </td><td><b>harness.exe</b>: Tue Nov 17 15:19:21 2020 (5FB45A79) (x86)<br/>
+<b>gdiplus.dll</b>: 10.0.19041.685 (x86)</td></tr>
+          <tr><td>Security impact: </td><td><span class="SecurityImpact">Potentially exploitable security issue that might allow information disclosure and (less likely) arbitrary code execution.</span></td></tr>
+
+
+<tr><td>Arguments: </td><td>['OOBR[0x98]+0 853.699 @ harness.exe!gdiplus.dll!bHandleFillRgn.emf']</td></tr>
+        </table>
+        <br/>
+        <a href="https://github.com/SkyLined/BugId">BugId</a> version 2020-07-02 21:18 by SkyLined.
+         You may not use this version of BugId for commercial purposes. Please contact the author if you wish to use BugId commercially. Contact and licensing information can be found at the bottom of this report.
+      </div>
+    </div>
+    <div class="Block Collapsible">
+      <h1 class="BlockHeader">Stack<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="Stack"><ol><li><span class="StackFrame StackFramePartOfId">gdiplus.dll!bHandleFillRgn + 0x45</span> <span class="StackFrameNotes">(id: 853)</span></li><li><span class="StackFrame StackFramePartOfId">gdiplus.dll!bParseWin32Metafile + 0xB9</span> <span class="StackFrameNotes">(id: 699)</span></li><li><span class="StackFrame">gdiplus.dll!GdipConvertEmfToWmf + 0x91</span></li><li><span class="StackFrame">gdiplus.dll!GdipGetWinMetaFileBitsEx + 0x160</span></li><li><span class="StackFrame">gdiplus.dll!ConvertEmfToPlaceableWmf + 0x5F</span></li><li><span class="StackFrame">gdiplus.dll!GdipEmfToWmfBits + 0x24</span></li><li><span class="StackFrame StackFrameInline">harness.exe!Gdiplus::Metafile::EmfToWmfBits + 0xD</span> <span class="StackFrameNotes">(inlined function)</span> <span class="StackFrameSource">[[C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um\GdiplusMetafile.h @ 374]]</span></li><li><span class="StackFrame">harness.exe!Fuzz + 0x5F</span> </li><li><span class="StackFrame">harness.exe!WinMain + 0xD0</span> </li><li><span class="StackFrame StackFrameInline">harness.exe!invoke_main + 0x1A</span> <span class="StackFrameNotes">(inlined function)</span> <span class="StackFrameSource">[[d:\agent\_work\57\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl @ 102]]</span></li><li><span class="StackFrame">harness.exe!__scrt_common_main_seh + 0xF8</span> <span class="StackFrameSource">[[d:\agent\_work\57\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl @ 288]]</span></li><li><span class="StackFrame">KERNEL32.DLL!BaseThreadInitThunk + 0x19</span></li><li><span class="StackFrame">ntdll.dll!__RtlUserThreadStart + 0x2F</span></li><li><span class="StackFrame">ntdll.dll!_RtlUserThreadStart + 0x1B</span></li></ol></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Registers<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <table class="Registers"><tr><td>eax   =        <span class="HexNumberHeader">0x</span>1</td><td>xmm0  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>ebx   =  <span class="HexNumberHeader">0x</span>7666E10</td><td>xmm1  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>ecx   =  <span class="HexNumberHeader">0x</span>765CD58</td><td>xmm2  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>edx   =   <span class="HexNumberHeader">0x</span>5C2000</td><td>xmm3  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>esi   =  <span class="HexNumberHeader">0x</span>7664FD4</td><td>xmm4  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>edi   = <span class="HexNumberHeader">0x</span>766CB140</td><td>xmm5  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>esp   =   <span class="HexNumberHeader">0x</span>6FFC3C</td><td>xmm6  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>ebp   =   <span class="HexNumberHeader">0x</span>6FFC54</td><td>xmm7  =                                <span class="HexNumberHeader">0x</span>0</td></tr></table>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Memory near access violation at 0x7665000<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="Memory"><table class="MemoryBlock"><tbody>
+<tr><td class="MemoryAddress Important">07664f48</td><td class="MemoryBytes"><span class="Important">*</span>bb bb cd ab</td><td class="MemoryChars">&#9559;&#9559;&#9552;&#189;</td><td class="MemoryPointer">abcdbbbb</td><td><span class="MemoryRemarks">// *0=Page heap StartStamp</span></td></tr>
+<tr><td class="MemoryAddress Important">07664f4c</td><td class="MemoryBytes"><span class="Important">*</span>00 10 08 04</td><td class="MemoryChars">&#9216;&#9658;&#9688;&#9830;</td><td class="MemoryPointer">04081000 &#8594; <span class="MemoryPointerSymbol">ffeeddcc</span></td><td><span class="MemoryRemarks">// *0=Page heap Heap</span></td></tr>
+<tr><td class="MemoryAddress Important">07664f50</td><td class="MemoryBytes"><span class="Important">*</span>98 00 00 00</td><td class="MemoryChars">&#255;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000098</td><td><span class="MemoryRemarks">// *0=Page heap RequestedSize</span></td></tr>
+<tr><td class="MemoryAddress Important">07664f54</td><td class="MemoryBytes"><span class="Important">*</span>00 10 00 00</td><td class="MemoryChars">&#9216;&#9658;&#9216;&#9216;</td><td class="MemoryPointer">00001000</td><td><span class="MemoryRemarks">// *0=Page heap ActualSize</span></td></tr>
+<tr><td class="MemoryAddress">07664f58</td><td class="MemoryBytes"> 00 00 00 00</td><td class="MemoryChars">&#9216;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f5c</td><td class="MemoryBytes"> 00 00 00 00</td><td class="MemoryChars">&#9216;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000000</td><td></td></tr>
+<tr><td class="MemoryAddress Important">07664f60</td><td class="MemoryBytes"><span class="Important">*</span>64 53 1b 04</td><td class="MemoryChars">dS&#8592;&#9830;</td><td class="MemoryPointer">041b5364 &#8594; <span class="MemoryPointerSymbol">041ab1fc</span></td><td><span class="MemoryRemarks">// *0=Page heap StackTrace</span></td></tr>
+<tr><td class="MemoryAddress Important">07664f64</td><td class="MemoryBytes"><span class="Important">*</span>bb bb ba dc</td><td class="MemoryChars">&#9559;&#9559;&#9553;&#9604;</td><td class="MemoryPointer">dcbabbbb</td><td><span class="MemoryRemarks">// *0=Page heap EndStamp</span></td></tr>
+<tr><td class="MemoryAddress Important">07664f68</td><td class="MemoryBytes"><span class="Important">*</span>01 00 00 00</td><td class="MemoryChars">&#9786;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000001</td><td><span class="MemoryRemarks">// *0=Heap block start</span></td></tr>
+<tr><td class="MemoryAddress">07664f6c</td><td class="MemoryBytes"> 6c 00 00 00</td><td class="MemoryChars">l&#9216;&#9216;&#9216;</td><td class="MemoryPointer">0000006c</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f70</td><td class="MemoryBytes"> 00 00 00 00</td><td class="MemoryChars">&#9216;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f74</td><td class="MemoryBytes"> 00 00 00 00</td><td class="MemoryChars">&#9216;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f78</td><td class="MemoryBytes"> 20 00 ff ff</td><td class="MemoryChars"> &#9216;&#9228;&#9228;</td><td class="MemoryPointer">ffff0020</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f7c</td><td class="MemoryBytes"> ff ff ff ff</td><td class="MemoryChars">&#9228;&#9228;&#9228;&#9228;</td><td class="MemoryPointer">ffffffff</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f80</td><td class="MemoryBytes"> 00 00 00 00</td><td class="MemoryChars">&#9216;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f84</td><td class="MemoryBytes"> 00 00 00 00</td><td class="MemoryChars">&#9216;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f88</td><td class="MemoryBytes"> e5 ff ff ff</td><td class="MemoryChars">&#963;&#9228;&#9228;&#9228;</td><td class="MemoryPointer">ffffffe5</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f8c</td><td class="MemoryBytes"> e5 ff ff ff</td><td class="MemoryChars">&#963;&#9228;&#9228;&#9228;</td><td class="MemoryPointer">ffffffe5</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f90</td><td class="MemoryBytes"> 20 45 4d 46</td><td class="MemoryChars"> EMF</td><td class="MemoryPointer">464d4520</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f94</td><td class="MemoryBytes"> 00 00 01 00</td><td class="MemoryChars">&#9216;&#9216;&#9786;&#9216;</td><td class="MemoryPointer">00010000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f98</td><td class="MemoryBytes"> 98 00 00 00</td><td class="MemoryChars">&#255;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000098</td><td></td></tr>
+<tr><td class="MemoryAddress">07664f9c</td><td class="MemoryBytes"> 03 00 00 00</td><td class="MemoryChars">&#9829;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000003</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fa0</td><td class="MemoryBytes"> 01 00 00 00</td><td class="MemoryChars">&#9786;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000001</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fa4</td><td class="MemoryBytes"> 00 00 00 00</td><td class="MemoryChars">&#9216;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fa8</td><td class="MemoryBytes"> 00 00 1c 00</td><td class="MemoryChars">&#9216;&#9216;&#8735;&#9216;</td><td class="MemoryPointer">001c0000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fac</td><td class="MemoryBytes"> 00 00 00 00</td><td class="MemoryChars">&#9216;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fb0</td><td class="MemoryBytes"> 00 1e 00 00</td><td class="MemoryChars">&#9216;&#9650;&#9216;&#9216;</td><td class="MemoryPointer">00001e00</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fb4</td><td class="MemoryBytes"> 00 04 00 00</td><td class="MemoryChars">&#9216;&#9830;&#9216;&#9216;</td><td class="MemoryPointer">00000400</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fb8</td><td class="MemoryBytes"> 57 01 e5 f1</td><td class="MemoryChars">W&#9786;&#963;&#177;</td><td class="MemoryPointer">f1e50157</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fbc</td><td class="MemoryBytes"> 4d 01 00 00</td><td class="MemoryChars">M&#9786;&#9216;&#9216;</td><td class="MemoryPointer">0000014d</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fc0</td><td class="MemoryBytes"> 00 00 00 00</td><td class="MemoryChars">&#9216;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fc4</td><td class="MemoryBytes"> 00 00 ff ff</td><td class="MemoryChars">&#9216;&#9216;&#9228;&#9228;</td><td class="MemoryPointer">ffff0000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fc8</td><td class="MemoryBytes"> 00 00 15 01</td><td class="MemoryChars">&#9216;&#9216;&#167;&#9786;</td><td class="MemoryPointer">01150000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fcc</td><td class="MemoryBytes"> 10 09 05 08</td><td class="MemoryChars">&#9658;&#9675;&#9827;&#9688;</td><td class="MemoryPointer">08050910</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fd0</td><td class="MemoryBytes"> b0 1e 04 fb</td><td class="MemoryChars">&#9617;&#9650;&#9830;&#8730;</td><td class="MemoryPointer">fb041eb0</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fd4</td><td class="MemoryBytes"> 47 00 00 00</td><td class="MemoryChars">G&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000047</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fd8</td><td class="MemoryBytes"> 2c 00 00 00</td><td class="MemoryChars">,&#9216;&#9216;&#9216;</td><td class="MemoryPointer">0000002c</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fdc</td><td class="MemoryBytes"> 00 00 00 40</td><td class="MemoryChars">&#9216;&#9216;&#9216;@</td><td class="MemoryPointer">40000000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fe0</td><td class="MemoryBytes"> 00 00 00 00</td><td class="MemoryChars">&#9216;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000000</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fe4</td><td class="MemoryBytes"> 08 00 00 00</td><td class="MemoryChars">&#9688;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000008</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fe8</td><td class="MemoryBytes"> 12 00 00 00</td><td class="MemoryChars">&#8597;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000012</td><td></td></tr>
+<tr><td class="MemoryAddress">07664fec</td><td class="MemoryBytes"> 0c 00 00 00</td><td class="MemoryChars">&#9792;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">0000000c</td><td></td></tr>
+<tr><td class="MemoryAddress">07664ff0</td><td class="MemoryBytes"> 01 00 00 00</td><td class="MemoryChars">&#9786;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000001</td><td></td></tr>
+<tr><td class="MemoryAddress">07664ff4</td><td class="MemoryBytes"> 0a 00 00 00</td><td class="MemoryChars">&#9689;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">0000000a</td><td></td></tr>
+<tr><td class="MemoryAddress">07664ff8</td><td class="MemoryBytes"> 10 00 00 00</td><td class="MemoryChars">&#9658;&#9216;&#9216;&#9216;</td><td class="MemoryPointer">00000010</td><td></td></tr>
+<tr><td class="MemoryAddress">07664ffc</td><td class="MemoryBytes"> ff ff ff ff</td><td class="MemoryChars">&#9228;&#9228;&#9228;&#9228;</td><td class="MemoryPointer">ffffffff</td><td></td></tr>
+<tr><td class="MemoryAddress Important">07665000</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td><span class="MemoryRemarks">// *0=Access violation, *0=Heap block end, *0=Allocation end</span></td></tr>
+<tr><td class="MemoryAddress">07665004</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665008</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766500c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665010</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665014</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665018</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766501c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665020</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665024</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665028</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766502c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665030</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665034</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665038</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766503c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665040</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665044</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665048</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766504c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665050</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665054</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665058</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766505c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665060</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665064</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665068</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766506c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665070</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665074</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665078</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766507c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665080</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665084</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665088</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766508c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665090</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665094</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665098</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766509c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650a0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650a4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650a8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650ac</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650b0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650b4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650b8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650bc</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650c0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650c4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650c8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650cc</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650d0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650d4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650d8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650dc</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650e0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650e4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650e8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650ec</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650f0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650f4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650f8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076650fc</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665100</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665104</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665108</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766510c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665110</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665114</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665118</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766511c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665120</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665124</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665128</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766512c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665130</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665134</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665138</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766513c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665140</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665144</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665148</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766514c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665150</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665154</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665158</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766515c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665160</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665164</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665168</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766516c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665170</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665174</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665178</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766517c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665180</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665184</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665188</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766518c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665190</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665194</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665198</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766519c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651a0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651a4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651a8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651ac</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651b0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651b4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651b8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651bc</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651c0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651c4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651c8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651cc</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651d0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651d4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651d8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651dc</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651e0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651e4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651e8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651ec</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651f0</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651f4</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651f8</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">076651fc</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665200</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665204</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665208</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766520c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665210</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665214</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665218</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766521c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665220</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665224</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665228</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766522c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665230</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665234</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665238</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">0766523c</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665240</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+<tr><td class="MemoryAddress">07665244</td><td colspan="3" class="MemoryInaccessible">-- inaccessible --</td><td></td></tr>
+</tbody></table>
+</span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Disassembly of stack frame 1 at gdiplus.dll!bHandleFillRgn + 0x45<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="Disassembly"><table><tr><td class="DisassemblyAddress">73df7b5e </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">73df7b60 </td><td class="DisassemblyOpcode">5f              </td><td class="DisassemblyInstruction">pop     edi</td></tr>
+<tr><td class="DisassemblyAddress">73df7b61 </td><td class="DisassemblyOpcode">5e              </td><td class="DisassemblyInstruction">pop     esi</td></tr>
+<tr><td class="DisassemblyAddress">73df7b62 </td><td class="DisassemblyOpcode">5b              </td><td class="DisassemblyInstruction">pop     ebx</td></tr>
+<tr><td class="DisassemblyAddress">73df7b63 </td><td class="DisassemblyOpcode">c9              </td><td class="DisassemblyInstruction">leave</td></tr>
+<tr><td class="DisassemblyAddress">73df7b64 </td><td class="DisassemblyOpcode">c20800          </td><td class="DisassemblyInstruction">ret     8</td></tr>
+<tr><td class="DisassemblyAddress">73df7b67 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b68 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b69 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b6a </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b6b </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b6c </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b6d </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b6e </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b6f </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td colspan="3" class="DisassemblyInformation">gdiplus!bHandleFillPath:</td></tr>
+<tr><td class="DisassemblyAddress">73df7b70 </td><td class="DisassemblyOpcode">8bff            </td><td class="DisassemblyInstruction">mov     edi,edi</td></tr>
+<tr><td class="DisassemblyAddress">73df7b72 </td><td class="DisassemblyOpcode">55              </td><td class="DisassemblyInstruction">push    ebp</td></tr>
+<tr><td class="DisassemblyAddress">73df7b73 </td><td class="DisassemblyOpcode">8bec            </td><td class="DisassemblyInstruction">mov     ebp,esp</td></tr>
+<tr><td class="DisassemblyAddress">73df7b75 </td><td class="DisassemblyOpcode">8b4d0c          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [ebp+0Ch]</td></tr>
+<tr><td class="DisassemblyAddress">73df7b78 </td><td class="DisassemblyOpcode">6a00            </td><td class="DisassemblyInstruction">push    0</td></tr>
+<tr><td class="DisassemblyAddress">73df7b7a </td><td class="DisassemblyOpcode">6a3e            </td><td class="DisassemblyInstruction">push    3Eh</td></tr>
+<tr><td class="DisassemblyAddress">73df7b7c </td><td class="DisassemblyOpcode">5a              </td><td class="DisassemblyInstruction">pop     edx</td></tr>
+<tr><td class="DisassemblyAddress">73df7b7d </td><td class="DisassemblyOpcode">e8e74e0000      </td><td class="DisassemblyInstruction">call    gdiplus!DoRenderPath (73dfca69)</td></tr>
+<tr><td class="DisassemblyAddress">73df7b82 </td><td class="DisassemblyOpcode">5d              </td><td class="DisassemblyInstruction">pop     ebp</td></tr>
+<tr><td class="DisassemblyAddress">73df7b83 </td><td class="DisassemblyOpcode">c20800          </td><td class="DisassemblyInstruction">ret     8</td></tr>
+<tr><td class="DisassemblyAddress">73df7b86 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b87 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b88 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b89 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b8a </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b8b </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b8c </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b8d </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b8e </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7b8f </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td colspan="3" class="DisassemblyInformation">gdiplus!bHandleFillRgn:</td></tr>
+<tr><td class="DisassemblyAddress">73df7b90 </td><td class="DisassemblyOpcode">8bff            </td><td class="DisassemblyInstruction">mov     edi,edi</td></tr>
+<tr><td class="DisassemblyAddress">73df7b92 </td><td class="DisassemblyOpcode">55              </td><td class="DisassemblyInstruction">push    ebp</td></tr>
+<tr><td class="DisassemblyAddress">73df7b93 </td><td class="DisassemblyOpcode">8bec            </td><td class="DisassemblyInstruction">mov     ebp,esp</td></tr>
+<tr><td class="DisassemblyAddress">73df7b95 </td><td class="DisassemblyOpcode">83ec0c          </td><td class="DisassemblyInstruction">sub     esp,0Ch</td></tr>
+<tr><td class="DisassemblyAddress">73df7b98 </td><td class="DisassemblyOpcode">53              </td><td class="DisassemblyInstruction">push    ebx</td></tr>
+<tr><td class="DisassemblyAddress">73df7b99 </td><td class="DisassemblyOpcode">8b5d0c          </td><td class="DisassemblyInstruction">mov     ebx,dword ptr [ebp+0Ch]</td></tr>
+<tr><td class="DisassemblyAddress">73df7b9c </td><td class="DisassemblyOpcode">56              </td><td class="DisassemblyInstruction">push    esi</td></tr>
+<tr><td class="DisassemblyAddress">73df7b9d </td><td class="DisassemblyOpcode">8b7508          </td><td class="DisassemblyInstruction">mov     esi,dword ptr [ebp+8]</td></tr>
+<tr><td class="DisassemblyAddress">73df7ba0 </td><td class="DisassemblyOpcode">57              </td><td class="DisassemblyInstruction">push    edi</td></tr>
+<tr><td class="DisassemblyAddress">73df7ba1 </td><td class="DisassemblyOpcode">8b3d0c5be473    </td><td class="DisassemblyInstruction">mov     edi,dword ptr [gdiplus!pfnIsValidEnhMetaRecordOffExt (73e45b0c)]</td></tr>
+<tr><td class="DisassemblyAddress">73df7ba7 </td><td class="DisassemblyOpcode">8b461c          </td><td class="DisassemblyInstruction">mov     eax,dword ptr [esi+1Ch]</td></tr>
+<tr><td class="DisassemblyAddress">73df7baa </td><td class="DisassemblyOpcode">8b4e18          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [esi+18h]</td></tr>
+<tr><td class="DisassemblyAddress">73df7bad </td><td class="DisassemblyOpcode">8945f4          </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-0Ch],eax</td></tr>
+<tr><td class="DisassemblyAddress">73df7bb0 </td><td class="DisassemblyOpcode">8d4620          </td><td class="DisassemblyInstruction">lea     eax,[esi+20h]</td></tr>
+<tr><td class="DisassemblyAddress">73df7bb3 </td><td class="DisassemblyOpcode">894df8          </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-8],ecx</td></tr>
+<tr><td class="DisassemblyAddress">73df7bb6 </td><td class="DisassemblyOpcode">8945fc          </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-4],eax</td></tr>
+<tr><td class="DisassemblyAddress">73df7bb9 </td><td class="DisassemblyOpcode">85ff            </td><td class="DisassemblyInstruction">test    edi,edi</td></tr>
+<tr><td class="DisassemblyAddress">73df7bbb </td><td class="DisassemblyOpcode">7442            </td><td class="DisassemblyInstruction">je      gdiplus!bHandleFillRgn+0x6f (73df7bff)</td></tr>
+<tr><td class="DisassemblyAddress">73df7bbd </td><td class="DisassemblyOpcode">51              </td><td class="DisassemblyInstruction">push    ecx</td></tr>
+<tr><td class="DisassemblyAddress">73df7bbe </td><td class="DisassemblyOpcode">6a20            </td><td class="DisassemblyInstruction">push    20h</td></tr>
+<tr><td class="DisassemblyAddress">73df7bc0 </td><td class="DisassemblyOpcode">56              </td><td class="DisassemblyInstruction">push    esi</td></tr>
+<tr><td class="DisassemblyAddress">73df7bc1 </td><td class="DisassemblyOpcode">ffb3e8010000    </td><td class="DisassemblyInstruction">push    dword ptr [ebx+1E8h]</td></tr>
+<tr><td class="DisassemblyAddress">73df7bc7 </td><td class="DisassemblyOpcode">8bcf            </td><td class="DisassemblyInstruction">mov     ecx,edi</td></tr>
+<tr><td class="DisassemblyAddress">73df7bc9 </td><td class="DisassemblyOpcode">ff152476e473    </td><td class="DisassemblyInstruction">call    dword ptr [gdiplus!__guard_check_icall_fptr (73e47624)]</td></tr>
+<tr><td class="DisassemblyAddress">73df7bcf </td><td class="DisassemblyOpcode">ffd7            </td><td class="DisassemblyInstruction">call    edi</td></tr>
+<tr><td class="DisassemblyAddress">73df7bd1 </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">73df7bd3 </td><td class="DisassemblyOpcode">7420            </td><td class="DisassemblyInstruction">je      gdiplus!bHandleFillRgn+0x65 (73df7bf5)</td></tr>
+<tr><td class="DisassemblyAddress Important">73df7bd5 </td><td class="DisassemblyOpcode Important">ff762c          </td><td class="DisassemblyInstruction Important">push    dword ptr [esi+2Ch] // current instruction</td></tr>
+<tr><td class="DisassemblyAddress">73df7bd8 </td><td class="DisassemblyOpcode">6a40            </td><td class="DisassemblyInstruction">push    40h</td></tr>
+<tr><td class="DisassemblyAddress">73df7bda </td><td class="DisassemblyOpcode">56              </td><td class="DisassemblyInstruction">push    esi</td></tr>
+<tr><td class="DisassemblyAddress">73df7bdb </td><td class="DisassemblyOpcode">ffb3e8010000    </td><td class="DisassemblyInstruction">push    dword ptr [ebx+1E8h]</td></tr>
+<tr><td class="DisassemblyAddress">73df7be1 </td><td class="DisassemblyOpcode">8b350c5be473    </td><td class="DisassemblyInstruction">mov     esi,dword ptr [gdiplus!pfnIsValidEnhMetaRecordOffExt (73e45b0c)]</td></tr>
+<tr><td class="DisassemblyAddress">73df7be7 </td><td class="DisassemblyOpcode">8bce            </td><td class="DisassemblyInstruction">mov     ecx,esi</td></tr>
+<tr><td class="DisassemblyAddress">73df7be9 </td><td class="DisassemblyOpcode">ff152476e473    </td><td class="DisassemblyInstruction">call    dword ptr [gdiplus!__guard_check_icall_fptr (73e47624)]</td></tr>
+<tr><td class="DisassemblyAddress">73df7bef </td><td class="DisassemblyOpcode">ffd6            </td><td class="DisassemblyInstruction">call    esi</td></tr>
+<tr><td class="DisassemblyAddress">73df7bf1 </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">73df7bf3 </td><td class="DisassemblyOpcode">7504            </td><td class="DisassemblyInstruction">jne     gdiplus!bHandleFillRgn+0x69 (73df7bf9)</td></tr>
+<tr><td class="DisassemblyAddress">73df7bf5 </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">73df7bf7 </td><td class="DisassemblyOpcode">eb18            </td><td class="DisassemblyInstruction">jmp     gdiplus!bHandleFillRgn+0x81 (73df7c11)</td></tr>
+<tr><td class="DisassemblyAddress">73df7bf9 </td><td class="DisassemblyOpcode">8b45fc          </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ebp-4]</td></tr>
+<tr><td class="DisassemblyAddress">73df7bfc </td><td class="DisassemblyOpcode">8b4df8          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [ebp-8]</td></tr>
+<tr><td class="DisassemblyAddress">73df7bff </td><td class="DisassemblyOpcode">8b55f4          </td><td class="DisassemblyInstruction">mov     edx,dword ptr [ebp-0Ch]</td></tr>
+<tr><td class="DisassemblyAddress">73df7c02 </td><td class="DisassemblyOpcode">6a47            </td><td class="DisassemblyInstruction">push    47h</td></tr>
+<tr><td class="DisassemblyAddress">73df7c04 </td><td class="DisassemblyOpcode">50              </td><td class="DisassemblyInstruction">push    eax</td></tr>
+<tr><td class="DisassemblyAddress">73df7c05 </td><td class="DisassemblyOpcode">51              </td><td class="DisassemblyInstruction">push    ecx</td></tr>
+<tr><td class="DisassemblyAddress">73df7c06 </td><td class="DisassemblyOpcode">6a00            </td><td class="DisassemblyInstruction">push    0</td></tr>
+<tr><td class="DisassemblyAddress">73df7c08 </td><td class="DisassemblyOpcode">6a00            </td><td class="DisassemblyInstruction">push    0</td></tr>
+<tr><td class="DisassemblyAddress">73df7c0a </td><td class="DisassemblyOpcode">8bcb            </td><td class="DisassemblyInstruction">mov     ecx,ebx</td></tr>
+<tr><td class="DisassemblyAddress">73df7c0c </td><td class="DisassemblyOpcode">e8e62e0000      </td><td class="DisassemblyInstruction">call    gdiplus!DoDrawRgn (73dfaaf7)</td></tr>
+<tr><td class="DisassemblyAddress">73df7c11 </td><td class="DisassemblyOpcode">5f              </td><td class="DisassemblyInstruction">pop     edi</td></tr>
+<tr><td class="DisassemblyAddress">73df7c12 </td><td class="DisassemblyOpcode">5e              </td><td class="DisassemblyInstruction">pop     esi</td></tr>
+<tr><td class="DisassemblyAddress">73df7c13 </td><td class="DisassemblyOpcode">5b              </td><td class="DisassemblyInstruction">pop     ebx</td></tr>
+<tr><td class="DisassemblyAddress">73df7c14 </td><td class="DisassemblyOpcode">c9              </td><td class="DisassemblyInstruction">leave</td></tr>
+<tr><td class="DisassemblyAddress">73df7c15 </td><td class="DisassemblyOpcode">c20800          </td><td class="DisassemblyInstruction">ret     8</td></tr>
+<tr><td class="DisassemblyAddress">73df7c18 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c19 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c1a </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c1b </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c1c </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c1d </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c1e </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c1f </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td colspan="3" class="DisassemblyInformation">gdiplus!bHandleFlattenPath:</td></tr>
+<tr><td class="DisassemblyAddress">73df7c20 </td><td class="DisassemblyOpcode">8bff            </td><td class="DisassemblyInstruction">mov     edi,edi</td></tr>
+<tr><td class="DisassemblyAddress">73df7c22 </td><td class="DisassemblyOpcode">55              </td><td class="DisassemblyInstruction">push    ebp</td></tr>
+<tr><td class="DisassemblyAddress">73df7c23 </td><td class="DisassemblyOpcode">8bec            </td><td class="DisassemblyInstruction">mov     ebp,esp</td></tr>
+<tr><td class="DisassemblyAddress">73df7c25 </td><td class="DisassemblyOpcode">8b450c          </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ebp+0Ch]</td></tr>
+<tr><td class="DisassemblyAddress">73df7c28 </td><td class="DisassemblyOpcode">ff7018          </td><td class="DisassemblyInstruction">push    dword ptr [eax+18h]</td></tr>
+<tr><td class="DisassemblyAddress">73df7c2b </td><td class="DisassemblyOpcode">ff154870e473    </td><td class="DisassemblyInstruction">call    dword ptr [gdiplus!_imp__FlattenPath (73e47048)]</td></tr>
+<tr><td class="DisassemblyAddress">73df7c31 </td><td class="DisassemblyOpcode">5d              </td><td class="DisassemblyInstruction">pop     ebp</td></tr>
+<tr><td class="DisassemblyAddress">73df7c32 </td><td class="DisassemblyOpcode">c20800          </td><td class="DisassemblyInstruction">ret     8</td></tr>
+<tr><td class="DisassemblyAddress">73df7c35 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c36 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c37 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c38 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c39 </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c3a </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73df7c3b </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr></table></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Disassembly of stack frame 2 at gdiplus.dll!bParseWin32Metafile + 0xB9<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="Disassembly"><table><tr><td class="DisassemblyAddress">73d4f304 </td><td class="DisassemblyOpcode">c20800          </td><td class="DisassemblyInstruction">ret     8</td></tr>
+<tr><td colspan="3" class="DisassemblyInformation">gdiplus!bParseWin32Metafile:</td></tr>
+<tr><td class="DisassemblyAddress">73d4f307 </td><td class="DisassemblyOpcode">8bff            </td><td class="DisassemblyInstruction">mov     edi,edi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f309 </td><td class="DisassemblyOpcode">55              </td><td class="DisassemblyInstruction">push    ebp</td></tr>
+<tr><td class="DisassemblyAddress">73d4f30a </td><td class="DisassemblyOpcode">8bec            </td><td class="DisassemblyInstruction">mov     ebp,esp</td></tr>
+<tr><td class="DisassemblyAddress">73d4f30c </td><td class="DisassemblyOpcode">51              </td><td class="DisassemblyInstruction">push    ecx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f30d </td><td class="DisassemblyOpcode">51              </td><td class="DisassemblyInstruction">push    ecx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f30e </td><td class="DisassemblyOpcode">53              </td><td class="DisassemblyInstruction">push    ebx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f30f </td><td class="DisassemblyOpcode">56              </td><td class="DisassemblyInstruction">push    esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f310 </td><td class="DisassemblyOpcode">8bf1            </td><td class="DisassemblyInstruction">mov     esi,ecx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f312 </td><td class="DisassemblyOpcode">33db            </td><td class="DisassemblyInstruction">xor     ebx,ebx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f314 </td><td class="DisassemblyOpcode">43              </td><td class="DisassemblyInstruction">inc     ebx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f315 </td><td class="DisassemblyOpcode">57              </td><td class="DisassemblyInstruction">push    edi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f316 </td><td class="DisassemblyOpcode">8bfa            </td><td class="DisassemblyInstruction">mov     edi,edx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f318 </td><td class="DisassemblyOpcode">391e            </td><td class="DisassemblyInstruction">cmp     dword ptr [esi],ebx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f31a </td><td class="DisassemblyOpcode">0f85c0000000    </td><td class="DisassemblyInstruction">jne     gdiplus!bParseWin32Metafile+0xd9 (73d4f3e0)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f320 </td><td class="DisassemblyOpcode">817e2820454d46  </td><td class="DisassemblyInstruction">cmp     dword ptr [esi+28h],464D4520h</td></tr>
+<tr><td class="DisassemblyAddress">73d4f327 </td><td class="DisassemblyOpcode">0f85b3000000    </td><td class="DisassemblyInstruction">jne     gdiplus!bParseWin32Metafile+0xd9 (73d4f3e0)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f32d </td><td class="DisassemblyOpcode">a1105be473      </td><td class="DisassemblyInstruction">mov     eax,dword ptr [gdiplus!pfnIsValidEnhMetaRecord (73e45b10)]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f332 </td><td class="DisassemblyOpcode">8945fc          </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-4],eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f335 </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f337 </td><td class="DisassemblyOpcode">741a            </td><td class="DisassemblyInstruction">je      gdiplus!bParseWin32Metafile+0x4c (73d4f353)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f339 </td><td class="DisassemblyOpcode">56              </td><td class="DisassemblyInstruction">push    esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f33a </td><td class="DisassemblyOpcode">ffb7e8010000    </td><td class="DisassemblyInstruction">push    dword ptr [edi+1E8h]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f340 </td><td class="DisassemblyOpcode">8bc8            </td><td class="DisassemblyInstruction">mov     ecx,eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f342 </td><td class="DisassemblyOpcode">ff152476e473    </td><td class="DisassemblyInstruction">call    dword ptr [gdiplus!__guard_check_icall_fptr (73e47624)]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f348 </td><td class="DisassemblyOpcode">ff55fc          </td><td class="DisassemblyInstruction">call    dword ptr [ebp-4]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f34b </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f34d </td><td class="DisassemblyOpcode">0f848d000000    </td><td class="DisassemblyInstruction">je      gdiplus!bParseWin32Metafile+0xd9 (73d4f3e0)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f353 </td><td class="DisassemblyOpcode">897708          </td><td class="DisassemblyInstruction">mov     dword ptr [edi+8],esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f356 </td><td class="DisassemblyOpcode">8b4630          </td><td class="DisassemblyInstruction">mov     eax,dword ptr [esi+30h]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f359 </td><td class="DisassemblyOpcode">89470c          </td><td class="DisassemblyInstruction">mov     dword ptr [edi+0Ch],eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f35c </td><td class="DisassemblyOpcode">8b4630          </td><td class="DisassemblyInstruction">mov     eax,dword ptr [esi+30h]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f35f </td><td class="DisassemblyOpcode">03c6            </td><td class="DisassemblyInstruction">add     eax,esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f361 </td><td class="DisassemblyOpcode">89b7c8010000    </td><td class="DisassemblyInstruction">mov     dword ptr [edi+1C8h],esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f367 </td><td class="DisassemblyOpcode">898754010000    </td><td class="DisassemblyInstruction">mov     dword ptr [edi+154h],eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f36d </td><td class="DisassemblyOpcode">3bc6            </td><td class="DisassemblyInstruction">cmp     eax,esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f36f </td><td class="DisassemblyOpcode">726f            </td><td class="DisassemblyInstruction">jb      gdiplus!bParseWin32Metafile+0xd9 (73d4f3e0)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f371 </td><td class="DisassemblyOpcode">8d55fc          </td><td class="DisassemblyInstruction">lea     edx,[ebp-4]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f374 </td><td class="DisassemblyOpcode">8bcf            </td><td class="DisassemblyInstruction">mov     ecx,edi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f376 </td><td class="DisassemblyOpcode">e869000000      </td><td class="DisassemblyInstruction">call    gdiplus!bGetNextRecord (73d4f3e4)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f37b </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f37d </td><td class="DisassemblyOpcode">7456            </td><td class="DisassemblyInstruction">je      gdiplus!bParseWin32Metafile+0xce (73d4f3d5)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f37f </td><td class="DisassemblyOpcode">8b35105be473    </td><td class="DisassemblyInstruction">mov     esi,dword ptr [gdiplus!pfnIsValidEnhMetaRecord (73e45b10)]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f385 </td><td class="DisassemblyOpcode">85f6            </td><td class="DisassemblyInstruction">test    esi,esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f387 </td><td class="DisassemblyOpcode">7417            </td><td class="DisassemblyInstruction">je      gdiplus!bParseWin32Metafile+0x99 (73d4f3a0)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f389 </td><td class="DisassemblyOpcode">ff75fc          </td><td class="DisassemblyInstruction">push    dword ptr [ebp-4]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f38c </td><td class="DisassemblyOpcode">8bce            </td><td class="DisassemblyInstruction">mov     ecx,esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f38e </td><td class="DisassemblyOpcode">ffb7e8010000    </td><td class="DisassemblyInstruction">push    dword ptr [edi+1E8h]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f394 </td><td class="DisassemblyOpcode">ff152476e473    </td><td class="DisassemblyInstruction">call    dword ptr [gdiplus!__guard_check_icall_fptr (73e47624)]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f39a </td><td class="DisassemblyOpcode">ffd6            </td><td class="DisassemblyInstruction">call    esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f39c </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f39e </td><td class="DisassemblyOpcode">743c            </td><td class="DisassemblyInstruction">je      gdiplus!bParseWin32Metafile+0xd5 (73d4f3dc)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3a0 </td><td class="DisassemblyOpcode">8b4dfc          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [ebp-4]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3a3 </td><td class="DisassemblyOpcode">8b01            </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ecx]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3a5 </td><td class="DisassemblyOpcode">8945f8          </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-8],eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3a8 </td><td class="DisassemblyOpcode">83f861          </td><td class="DisassemblyInstruction">cmp     eax,61h</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3ab </td><td class="DisassemblyOpcode">7fc4            </td><td class="DisassemblyInstruction">jg      gdiplus!bParseWin32Metafile+0x6a (73d4f371)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3ad </td><td class="DisassemblyOpcode">8b3485c039d073  </td><td class="DisassemblyInstruction">mov     esi,dword ptr gdiplus!ScanOperation::CopyOps+0x50 (73d039c0)[eax*4]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3b4 </td><td class="DisassemblyOpcode">57              </td><td class="DisassemblyInstruction">push    edi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3b5 </td><td class="DisassemblyOpcode">51              </td><td class="DisassemblyInstruction">push    ecx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3b6 </td><td class="DisassemblyOpcode">8bce            </td><td class="DisassemblyInstruction">mov     ecx,esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3b8 </td><td class="DisassemblyOpcode">ff152476e473    </td><td class="DisassemblyInstruction">call    dword ptr [gdiplus!__guard_check_icall_fptr (73e47624)]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3be </td><td class="DisassemblyOpcode">ffd6            </td><td class="DisassemblyInstruction">call    esi <span class="Important">// call</span></td></tr>
+<tr><td class="DisassemblyAddress Important">73d4f3c0 </td><td class="DisassemblyOpcode Important">f74704000000c0  </td><td class="DisassemblyInstruction Important">test    dword ptr [edi+4],0C0000000h // return address</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3c7 </td><td class="DisassemblyOpcode">8bd8            </td><td class="DisassemblyInstruction">mov     ebx,eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3c9 </td><td class="DisassemblyOpcode">750a            </td><td class="DisassemblyInstruction">jne     gdiplus!bParseWin32Metafile+0xce (73d4f3d5)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3cb </td><td class="DisassemblyOpcode">837df801        </td><td class="DisassemblyInstruction">cmp     dword ptr [ebp-8],1</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3cf </td><td class="DisassemblyOpcode">75a0            </td><td class="DisassemblyInstruction">jne     gdiplus!bParseWin32Metafile+0x6a (73d4f371)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3d1 </td><td class="DisassemblyOpcode">85db            </td><td class="DisassemblyInstruction">test    ebx,ebx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3d3 </td><td class="DisassemblyOpcode">759c            </td><td class="DisassemblyInstruction">jne     gdiplus!bParseWin32Metafile+0x6a (73d4f371)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3d5 </td><td class="DisassemblyOpcode">8bc3            </td><td class="DisassemblyInstruction">mov     eax,ebx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3d7 </td><td class="DisassemblyOpcode">5f              </td><td class="DisassemblyInstruction">pop     edi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3d8 </td><td class="DisassemblyOpcode">5e              </td><td class="DisassemblyInstruction">pop     esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3d9 </td><td class="DisassemblyOpcode">5b              </td><td class="DisassemblyInstruction">pop     ebx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3da </td><td class="DisassemblyOpcode">c9              </td><td class="DisassemblyInstruction">leave</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3db </td><td class="DisassemblyOpcode">c3              </td><td class="DisassemblyInstruction">ret</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3dc </td><td class="DisassemblyOpcode">33db            </td><td class="DisassemblyInstruction">xor     ebx,ebx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3de </td><td class="DisassemblyOpcode">ebf5            </td><td class="DisassemblyInstruction">jmp     gdiplus!bParseWin32Metafile+0xce (73d4f3d5)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3e0 </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3e2 </td><td class="DisassemblyOpcode">ebf3            </td><td class="DisassemblyInstruction">jmp     gdiplus!bParseWin32Metafile+0xd0 (73d4f3d7)</td></tr>
+<tr><td colspan="3" class="DisassemblyInformation">gdiplus!bGetNextRecord:</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3e4 </td><td class="DisassemblyOpcode">8bff            </td><td class="DisassemblyInstruction">mov     edi,edi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3e6 </td><td class="DisassemblyOpcode">56              </td><td class="DisassemblyInstruction">push    esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3e7 </td><td class="DisassemblyOpcode">8bf1            </td><td class="DisassemblyInstruction">mov     esi,ecx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3e9 </td><td class="DisassemblyOpcode">57              </td><td class="DisassemblyInstruction">push    edi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3ea </td><td class="DisassemblyOpcode">83beb001000002  </td><td class="DisassemblyInstruction">cmp     dword ptr [esi+1B0h],2</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3f1 </td><td class="DisassemblyOpcode">0f84f9bb0300    </td><td class="DisassemblyInstruction">je      gdiplus!bGetNextRecord+0x3bc0c (73d8aff0)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3f7 </td><td class="DisassemblyOpcode">8b8ec8010000    </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [esi+1C8h]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f3fd </td><td class="DisassemblyOpcode">8bbe54010000    </td><td class="DisassemblyInstruction">mov     edi,dword ptr [esi+154h]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f403 </td><td class="DisassemblyOpcode">8d410c          </td><td class="DisassemblyInstruction">lea     eax,[ecx+0Ch]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f406 </td><td class="DisassemblyOpcode">3bc7            </td><td class="DisassemblyInstruction">cmp     eax,edi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f408 </td><td class="DisassemblyOpcode">7725            </td><td class="DisassemblyInstruction">ja      gdiplus!bGetNextRecord+0x4b (73d4f42f)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f40a </td><td class="DisassemblyOpcode">3bc1            </td><td class="DisassemblyInstruction">cmp     eax,ecx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f40c </td><td class="DisassemblyOpcode">7221            </td><td class="DisassemblyInstruction">jb      gdiplus!bGetNextRecord+0x4b (73d4f42f)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f40e </td><td class="DisassemblyOpcode">898ec4010000    </td><td class="DisassemblyInstruction">mov     dword ptr [esi+1C4h],ecx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f414 </td><td class="DisassemblyOpcode">8b4104          </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ecx+4]</td></tr>
+<tr><td class="DisassemblyAddress">73d4f417 </td><td class="DisassemblyOpcode">03c1            </td><td class="DisassemblyInstruction">add     eax,ecx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f419 </td><td class="DisassemblyOpcode">890a            </td><td class="DisassemblyInstruction">mov     dword ptr [edx],ecx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f41b </td><td class="DisassemblyOpcode">3bc7            </td><td class="DisassemblyInstruction">cmp     eax,edi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f41d </td><td class="DisassemblyOpcode">7710            </td><td class="DisassemblyInstruction">ja      gdiplus!bGetNextRecord+0x4b (73d4f42f)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f41f </td><td class="DisassemblyOpcode">3bc1            </td><td class="DisassemblyInstruction">cmp     eax,ecx</td></tr>
+<tr><td class="DisassemblyAddress">73d4f421 </td><td class="DisassemblyOpcode">720c            </td><td class="DisassemblyInstruction">jb      gdiplus!bGetNextRecord+0x4b (73d4f42f)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f423 </td><td class="DisassemblyOpcode">8986c8010000    </td><td class="DisassemblyInstruction">mov     dword ptr [esi+1C8h],eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f429 </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f42b </td><td class="DisassemblyOpcode">40              </td><td class="DisassemblyInstruction">inc     eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f42c </td><td class="DisassemblyOpcode">5f              </td><td class="DisassemblyInstruction">pop     edi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f42d </td><td class="DisassemblyOpcode">5e              </td><td class="DisassemblyInstruction">pop     esi</td></tr>
+<tr><td class="DisassemblyAddress">73d4f42e </td><td class="DisassemblyOpcode">c3              </td><td class="DisassemblyInstruction">ret</td></tr>
+<tr><td class="DisassemblyAddress">73d4f42f </td><td class="DisassemblyOpcode">832200          </td><td class="DisassemblyInstruction">and     dword ptr [edx],0</td></tr>
+<tr><td class="DisassemblyAddress">73d4f432 </td><td class="DisassemblyOpcode">83a6c401000000  </td><td class="DisassemblyInstruction">and     dword ptr [esi+1C4h],0</td></tr>
+<tr><td class="DisassemblyAddress">73d4f439 </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">73d4f43b </td><td class="DisassemblyOpcode">ebef            </td><td class="DisassemblyInstruction">jmp     gdiplus!bGetNextRecord+0x48 (73d4f42c)</td></tr>
+<tr><td class="DisassemblyAddress">73d4f43d </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr>
+<tr><td class="DisassemblyAddress">73d4f43e </td><td class="DisassemblyOpcode">cc              </td><td class="DisassemblyInstruction">int     3</td></tr></table></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Binary information<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="BinaryInformation"><h2 class="SubHeader">harness.exe</h2><table><tr><td>Loaded symbol image file</td><td>C:\BugId\harness.exe</td></tr><tr><td>Image path</td><td>harness.exe</td></tr><tr><td>Image name</td><td>harness.exe</td></tr><tr><td>Timestamp</td><td>Tue Nov 17 15:19:21 2020 (5FB45A79)</td></tr><tr><td>CheckSum</td><td>00000000</td></tr><tr><td>ImageSize</td><td>00006000</td></tr><tr><td>Translations</td><td>0000.04b0 0000.04e4 0409.04b0 0409.04e4</td></tr></table><br/>
+<br/>
+<h2 class="SubHeader">gdiplus.dll</h2><table><tr><td>Loaded symbol image file</td><td>C:\Windows\WinSxS\x86_microsoft.windows.gdiplus_6595b64144ccf1df_1.1.19041.685_none_4299dbb28a92ae3e\gdiplus.dll</td></tr><tr><td>Image path</td><td>C:\Windows\WinSxS\x86_microsoft.windows.gdiplus_6595b64144ccf1df_1.1.19041.685_none_4299dbb28a92ae3e\gdiplus.dll</td></tr><tr><td>Image name</td><td>gdiplus.dll</td></tr><tr><td>Timestamp</td><td>F62B71FB (This is a reproducible build file hash, not a timestamp)</td></tr><tr><td>CheckSum</td><td>00165141</td></tr><tr><td>ImageSize</td><td>00167000</td></tr><tr><td>File version</td><td>10.0.19041.685</td></tr><tr><td>Product version</td><td>10.0.19041.685</td></tr><tr><td>File flags</td><td>0 (Mask 3F)</td></tr><tr><td>File OS</td><td>40004 NT Win32</td></tr><tr><td>File type</td><td>2.0 Dll</td></tr><tr><td>File date</td><td>00000000.00000000</td></tr><tr><td>Translations</td><td>0409.04b0</td></tr><tr><td>CompanyName</td><td>Microsoft Corporation</td></tr><tr><td>ProductName</td><td>Microsoft&#171; Windows&#171; Operating System</td></tr><tr><td>InternalName</td><td>gdiplus</td></tr><tr><td>OriginalFilename</td><td>gdiplus</td></tr><tr><td>ProductVersion</td><td>10.0.19041.685</td></tr><tr><td>FileVersion</td><td>10.0.19041.685 (WinBuild.160101.0800)</td></tr><tr><td>FileDescription</td><td>Microsoft GDI+</td></tr><tr><td>LegalCopyright</td><td>&#8976; Microsoft Corporation. All rights reserved.</td></tr></table></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Application and cdb output log<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="CDBOrApplicationStdOut">*** wait with pending attach</span><br/>
+<span class="CDBOrApplicationStdOut">************* Path validation summary **************</span><br/>
+<span class="CDBOrApplicationStdOut">Response                         Time (ms)     Location</span><br/>
+<span class="CDBOrApplicationStdOut">Deferred                                       cache*</span><br/>
+<span class="CDBOrApplicationStdOut">Deferred                                       srv*http://msdl.microsoft.com/download/symbols</span><br/>
+<span class="CDBOrApplicationStdOut">Deferred                                       SRV*C:\Symbols*https://msdl.microsoft.com/download/symbols</span><br/>
+<span class="CDBOrApplicationStdOut">Symbol search path is: cache*;srv*http://msdl.microsoft.com/download/symbols;SRV*C:\Symbols*https://msdl.microsoft.com/download/symbols</span><br/>
+<span class="CDBOrApplicationStdOut">Executable search path is: </span><br/>
+<span class="CDBOrApplicationStdOut">Page heap: pid 0x49C: page heap enabled with flags 0x2.</span><br/>
+<span class="CDBOrApplicationStdOut">Page heap: pid 0x49C: page heap enabled with flags 0x2.</span><br/>
+<span class="CDBOrApplicationStdOut">(49c.a44): Access violation - code c0000005 (first chance)</span><br/>
+<span class="CDBOrApplicationStdOut">First chance exceptions are reported before any exception handling.</span><br/>
+<span class="CDBOrApplicationStdOut">This exception may be expected and handled.</span><br/>
+
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Footer Block">
+      This report was generated using <a href="https://github.com/SkyLined/BugId">BugId version 2020-07-02 21:18</a>
+        by SkyLined</a>.<br/>
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="vertical-align: middle; float: left;" original-src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAAAfCAYAAABjyArgAAAHFUlEQVRoge2aTWsbSRrH+zysha5BAxGEXaxDgjzDzGWXpMH5AJpTQiCDLjvMbcQ4Y9asdtMblAzZDRihMGQWEg/MbeVEfrcly2rZrVa3+r0l2Vcd9AGEP8F/D+2uqW5gaWWn67+1VP/56mnmgEQYBgGH/uFdIZxP2wXtrBb3EG+tIfi4T5KQgmHYhmCLKCqiJA1CTW9BtVQoJkqNEtzuqlCNRUoeg2yJqGqiKjIAg7FMnihhOLhPvKlPHaLO9gubGFzbwPru2tY287h3dZbvN1cxdvNVaxuZJFd/9+V6TRkArfA53FwVES5wkOQjlBVRNR0GaqpwLB1WA0TdtNC/biOxonT68d12E0bVsOEYetQTRU1XUZVESFIRyiLPA6Oiijw3ZBz2+8I5NWN7FWFzHjhimVUZAGSKkE1HLB200LqaQrzd+cxE5jpWgozgRnM351H6lkKdtOCUTegmgpkTUKlVsGhWMbB0YEH8sbeOtZ2cg7kzbcDvXgpuYRIJNJ170gkgqXk0sQwLsI+AZwv7XngypoEzVJhNUykM2mEQqGhdScUCiH9Mg2rYUKzNNR0GSKBXCRysZXfxMauA/k8L868ymA2MkvssyyLRCKBRCIBlmXJ97ORWWReZUaGcJH2CeDi4T7KFZ6Cq8FuWoh9FfPACwaDiMfj4DgOPM+D53lwHId4PI5gMOj5beyrGCqSAN12IFdqFZRF/kyT97Czv+2Vih5evPLrGwQCAcdeLIZWqwV/a7VaiMWccQYCgZEgXLR9ArgklCBIR5BUx3P9cIPBIDiOQ6fT6RoA3VZWVjygZyOzqEgCNEuDrEkQpCPwQgn75QL2DnYdqejhxe4AXc+Kx+Oe+7j2/fd27zksgH7208vLeHDv/sT2CeBDsYyqIkI1FFgN0wM3Go32nNl+rdPpIBqNejzZaphQTQVVRaSkgvLinTXktt55ZGIpuUQ86+T4eCBgAMTThtFM1/5nc3P476ufPXCvXbuGmT/MYHHhEdrt9lj2PYAFWYCsyTBsHelM2gN3kNcOAzn9Mg2jbjhSIQvgK44X7xZ3sFVwtNiVCRewG3BGmdxWq0UC06CHd+3P/vFPuHE9jDt//gu+/es3YBgGHMfhx2c/gmEYrGazY9n3AK4qIlRTgd20SEALBoMwTXNkuDRkVy5CoRDspgXVVIkXFw8dL6YzClom3IDjb/F4nEycf2kDIIFpmIdnWRY/fL+Av/2wiBvXw6S7nutfOaPY9wCWNQm6rSP1NEUGz3Hc2HDd5uoWwzBIPUvBsHWixaWztI2WCT/gRCLRZdOftfhbIpEYGjBtX5YkLC488theXHjUBXlY+x7ANb0Gs2Fi/u488V5aGnieRywWA8uyYFnWA99/bXl52TMg14vn787DaphQ9Fq3TOQ3nWyC0uH3Ddht7XYbiwuPMHfzFvHoB/fuo5DPjw9YNRx5cDcR9NLjeb5nvsuyLHK5XM9r9P+7S3omMAO7aUM1FYhnKdt+eR97B7vYKmySdO19SwTdTk9P8eb1awDAyfGxRzZcnR5LIjRTRf3YJgOnvdANVuFwGK1WCzzPIxwOY2VlhVxzM41cLkeuuY2WifpxHZpHh/c96RoN+Lwg1897xwlytP0H9+7jxvUw5m7ewtzNW0QmVrNZ/PPvSVwPfTpekNMsFY2TOhk4z/NdD9NLk4fRa3oFNE7q0CwNVaU6EDCdpg0LeJw0jbbfbreR+tcTkqall5dxeno6lv3fPeDs+mgbDVcbp7HRePHv/3RtNMaxP7JEdDodmKaJcDgMjuM8EuG/5rZxJSK7foW2yucFufMC2TBBzp15J8hZUI3hghwNgS7GRKNRxONxJBIJz2Zm3GLPRdrvStPcLXIwGOxa5v3StFwuR773XwOAcDjsSdNqVJpW4Punab0084MtV7obDXqb7M9nx2n9NhpHZxuNfOm3jUa/gs+H3AlgsdZ7qzxKHcDfJt0qXzacqQKmiz1vfnnt0aOpFHsyaRi2jpouQ5AFUrKkC+/+Ys9lw5kqYIZhkHycJOXKh18/9EAepejTarV6lysNBU+ePukZFK94/+1D4vvvoJkqrDEK7p1OBxzHeQruX3z5BeymBc1SkXycvOwHvXzADMPgH4+T0CwNVtPyeLILepQjI7tpQbc0/PTzTxMNkm70d/7fTGK/32f/fScGTCCbzqHnm19ej37omXEPPdWJ4fZ6YP/fEwLoO3nnTehEgBnGkQv62D6dSQ88tk+/TDvH9rYO1VCmJgu9PHgKD94X6LQm7lzADMPgs8/nkNvIQTUV6LYOk7x4YlMvntiwm5bnxZO1zRxu37k9FbiDPGmagOnJHHTfqQB2++07t/H8xXMUy0Xq1amzbqpQDQXFchHPXzyfKlj/Q1+0Bw8CfmGAP/YJOoBPLn0QV7cz/wfb6tgzbhMVpgAAAABJRU5ErkJggg=="/></a>This copy of BugId is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> during a trial period.<br/>Please contact the author if you wish to continue to use BugId after the trial period.
+    </div>
+  </body>
+</html>
