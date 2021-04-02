@@ -1,0 +1,609 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/> 
+    <meta http-equiv="Content-Security-Policy" content="disown-opener; referrer no-referrer;"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@berendjanwever"/>
+    <meta name="twitter:title" content="RecursiveCall b17.11e @ harness.exe!windows.storage.dll!CRegFolder::BindToObject"/>
+    <meta name="twitter:description" content="A recursive function call involving 2 functions exhausted available stack memory"/>
+    <title>RecursiveCall b17.11e @ harness.exe!windows.storage.dll!CRegFolder::BindToObject</title>
+    <style>
+      * {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        border-spacing: 0;
+        border-collapse: collapse;
+        color: inherit;
+        background: transparent;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        font-size: inherit;
+      }
+      html {
+        overflow-y: scroll; /* prevent center jumping */
+        color: rgba(22, 19, 16, 1);
+        background: #E5E2DE;
+        font-weight: 400;
+        padding: 1em;
+        font-family: Monospace;
+      }
+      body {
+        margin: auto;
+        max-width: 80em;
+      }
+      h1, h2, h3, h4, h5 {
+        font-weight: 700;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+        margin-bottom: -1px;
+      }
+      :link {
+        border-bottom: 1px dotted rgba(0,0, 238, 0.25);
+      }
+      :link:hover, :link:active {
+        border-bottom: 1px solid rgba(0,0, 238, 1);
+      }
+      :visited {
+        border-bottom: 1px dotted rgba(85, 26, 139, 0.25);
+      }
+      :visited:hover, :visited:active {
+        border-bottom: 1px solid rgba(85, 26, 139, 1);
+      }
+      table {
+        border-spacing: 0;
+        border-collapse: collapse;
+      }
+      ul, ol {
+        padding-left: 2em;
+      }
+      h1 {
+        padding: 0.5em 1em 0.5em 1em;
+        color: rgba(255, 251, 247, 1);
+        background-color: rgba(22, 19, 16, 1);
+        font-size: 120%;
+        margin-bottom: 0.5em;
+      }
+      h2 {
+        font-size: 120%;
+      }
+      td:first-child {
+        white-space: pre;
+      }
+      td {
+        vertical-align: top;
+      }
+      sup, sub {
+        font-size: 50%;
+      }
+      hr {
+        border: dotted black;
+        border-width: 0 0 1pt 0;
+      }
+      .HexNumberHeader {
+        opacity: 0.25;
+      }
+      .Block {
+        padding: 1em;
+        border: 1px solid rgba(22, 19, 16, 0.2);
+        border-radius: 0.5em;
+        background-color: rgba(255, 251, 247, 1);
+        box-shadow: 0 1em   2em rgba(22, 19, 16, 0.2),
+                    0 1em   1em rgba(22, 19, 16, 0.05),
+                    0 1em 0.5em rgba(22, 19, 16, 0.05);
+        margin-bottom: 1em;
+        display: block;
+      }
+      .Content {
+        overflow-x: auto;
+      }
+      .Collapsible > .Content,
+      .Collapsed > .CollapsedPlaceholder {
+        display: block;
+      }
+      .Collapsible > .CollapsedPlaceholder,
+      .Collapsed > .Content {
+        display: none;
+      }
+      .BlockHeaderIcon {
+        float: right;
+        vertical-align: top;
+        border: 1px solid rgba(255, 251, 247, 1);
+      }
+      .Collapsible .BlockHeaderIcon {
+        padding: 1px 0.8em 0 0;
+      }
+      .Collapsed .BlockHeaderIcon {
+        padding: 0.8em 0.8em 0 0;
+      }
+      .Footer {
+        padding: 1em;
+        text-align: center;
+      }
+      .Important {
+        background-color: rgba(255,255,0,0.3);
+      }
+      .SecurityImpact {
+        background-color: rgba(255,0,0,0.2);
+      }
+      .CDBPrompt {
+        white-space: pre;
+      }
+      .CDBCommand {
+        font-weight: bold;
+        white-space: pre;
+      }
+      .CDBComment {
+        font-weight: bold;
+        white-space: pre;
+        background-color: rgba(255,255,0,0.1);
+      }
+      .CDBCommandResult {
+        font-weight: bold;
+        white-space: pre;
+      }
+      .CDBStdOut {
+        color: grey;
+        white-space: pre;
+      }
+      .CDBOrApplicationStdOut {
+        font-weight: bold;
+        color: navy;
+        background-color: rgba(255,255,0,0.3);
+        white-space: pre;
+      }
+      .CDBStdErr {
+        color: maroon;
+        white-space: pre;
+      }
+      .CDBIgnoredException {
+        color: grey;
+        white-space: pre;
+      }
+      .BinaryInformation, .Memory, .Registers, .Stack {
+        white-space: pre;
+      }
+      table.Registers {
+        border-spacing: 1ex 0;
+        border-collapse: separate;
+      }
+      table.Registers td + td {
+        padding-left: 1ex;
+        border-left: 1px solid rgba(0,0,0, 0.25);
+      }
+      .DisassemblyInformation {
+      }
+      .DisassemblyAddress {
+        color: grey;
+      }
+      .DisassemblyOpcode {
+        color: grey;
+      }
+      .DisassemblyInstruction {
+      }
+      .MemoryAddress {
+        color: grey;
+        padding-right: 0.5em;
+      }
+      .MemoryInaccessible {
+        color: grey;
+        text-align: center;
+      }
+      .MemoryBytes {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+      .MemoryChars {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+      .MemoryPointer {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+      .MemoryPointerSymbol {
+        padding-left: 0.5em;
+      }
+      .MemoryRemarks {
+        background-color: rgba(255,255,0,0.3);
+      }
+      .StackFrame {
+      }
+      .StackFrameInline {
+        color: silver;
+      }
+      .StackFrameHidden {
+        color: silver;
+      }
+      .StackFramePartOfId {
+        background-color: rgba(255,255,0,0.3);
+        font-weight: bold;
+      }
+      .StackFrameWithoutSymbol {
+        font-style: italic;
+      }
+      .StackFrameNotes {
+      }
+      .StackFrameSource {
+        color: grey;
+      }
+      .LogProcess {
+      }
+      .LogException {
+      }
+      .LogBreakpoint {
+      }
+      .LogEmbeddedCommandsBreakpoint {
+      }
+      .LogStdErrOutput {
+        color: maroon;
+      }
+      .LogImportantStdErrOutput {
+      }
+      .LogStdOutOutput {
+        font-weight: bold;
+      }
+      .LogImportantStdOutOutput {
+      }
+      .LogMessage {
+      }
+    </style>
+    <script>
+      function fAddClickHandler(oBlockHeaderElement) {
+        var oBlockElement = oBlockHeaderElement.parentElement,
+            bCollapsedPlaceholdersRemoved = false;
+        oBlockHeaderElement.onclick = function () {
+          oBlockElement.className = oBlockElement.className.replace(
+            /\b(Collapsed|Collapsible)\b/,
+            function (sCurrentClassName) {
+              return {"Collapsible": "Collapsed", "Collapsed": "Collapsible"}[sCurrentClassName];
+            }
+          );
+          if (!bCollapsedPlaceholdersRemoved) {
+            // A copy of this list is needed as it is dynamic and we plan to remove elements.
+            var aoCollapsedPlaceholderElements = Array.prototype.slice.call(document.getElementsByClassName("CollapsedPlaceholder"));
+            for (var u = 0; u < aoCollapsedPlaceholderElements.length; u++) {
+              var oCollapsedPlaceholderElement = aoCollapsedPlaceholderElements[u];
+              oCollapsedPlaceholderElement.parentNode.removeChild(oCollapsedPlaceholderElement);
+            };
+          };
+        };
+      };
+      onload = function() {
+        var aoBlockHeaderElements = document.getElementsByClassName("BlockHeader");
+        for (var u = 0; u < aoBlockHeaderElements.length; u++) {
+          fAddClickHandler(aoBlockHeaderElements[u]);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <div class="Block Collapsible">
+      <h1 class="BlockHeader">BugId RecursiveCall b17.11e @ harness.exe!windows.storage.dll!CRegFolder::BindToObject summary<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <table>
+          <tr><td>BugId:           </td><td><span class="Important"><b>RecursiveCall b17.11e</b></span></td></tr>
+
+          <tr><td>Location:        </td><td><span class="Important">harness.exe!windows.storage.dll!CRegFolder::BindToObject</span></td></tr>
+
+          <tr><td>Description:     </td><td><span class="Important">A recursive function call involving 2 functions exhausted available stack memory</span></td></tr>
+          <tr><td>Version:         </td><td><b>harness.exe</b>: Sat Nov  7 15:29:02 2020 (5FA6AF2E) (x86)<br/>
+<b>windows.storage.dll</b>: 10.0.19041.662 (x86)</td></tr>
+          <tr><td>Security impact: </td><td>Denial of Service</td></tr>
+
+
+<tr><td>Arguments: </td><td>['RecursiveCall b17.11e @ windows.storage.dll!CRegFolder.BindToObject.lnk']</td></tr>
+        </table>
+        <br/>
+        <a href="https://github.com/SkyLined/BugId">BugId</a> version 2020-07-02 21:18 by SkyLined.
+         You may not use this version of BugId for commercial purposes. Please contact the author if you wish to use BugId commercially. Contact and licensing information can be found at the bottom of this report.
+      </div>
+    </div>
+    <div class="Block Collapsible">
+      <h1 class="BlockHeader">Stack<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="Stack"><ol><li><span class="StackFrame StackFrameHidden">verifier.dll!DphCommitMemoryForPageHeap + 0xCA</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">verifier.dll!AVrfpDphSetProtectionsBeforeUse + 0x98</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">verifier.dll!AVrfDebugPageHeapAllocate + 0x201</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">ntdll.dll!RtlDebugAllocateHeap + 0x39</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">ntdll.dll!RtlpAllocateHeap + 0xF0</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">ntdll.dll!RtlpAllocateHeapInternal + 0x3EE</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">ntdll.dll!RtlAllocateHeap + 0x3E</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">KERNELBASE.dll!LocalAlloc + 0x80</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">windows.storage.dll!CRegFolder::Initialize + 0x246</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">windows.storage.dll!CDrives_CreateInstance + 0x2A1</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">windows.storage.dll!_SHCoCreateInstance + 0x445</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">windows.storage.dll!CRegFolder::_CreateCachedDelegateFolder + 0x9C</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">windows.storage.dll!CRegFolder::_GetCachedDelegateFolder + 0x41</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFrameHidden">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x106</span> <span class="StackFrameNotes">(This call is not part of the detected recursion loops)</span></li><li><span class="StackFrame StackFramePartOfId">windows.storage.dll!CRegFolder::BindToObject + 0x174</span> <span class="StackFrameNotes">(id: b17)</span></li><li><span class="StackFrame StackFramePartOfId">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span> <span class="StackFrameNotes">(id: 11e)</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::BindToObject + 0x174</span></li><li><span class="StackFrame">windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162</span></li></ol><ul><li>There were more stack frames than shown above, but these were not considered relevant.</li></ul></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Registers<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <table class="Registers"><tr><td>eax   = <span class="HexNumberHeader">0x</span>21F2D0EA</td><td>xmm0  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>ebx   =        <span class="HexNumberHeader">0x</span>0</td><td>xmm1  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>ecx   =   <span class="HexNumberHeader">0x</span>A03138</td><td>xmm2  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>edx   =        <span class="HexNumberHeader">0x</span>4</td><td>xmm3  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>esi   = <span class="HexNumberHeader">0x</span>1BECB000</td><td>xmm4  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>edi   =  <span class="HexNumberHeader">0x</span>114000A</td><td>xmm5  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>esp   =   <span class="HexNumberHeader">0x</span>A02F84</td><td>xmm6  =                                <span class="HexNumberHeader">0x</span>0</td></tr>
+<tr><td>ebp   =   <span class="HexNumberHeader">0x</span>A03108</td><td>xmm7  = <span class="HexNumberHeader">0x</span>86CFDA53BE2271056B0B1CE418284E51</td></tr></table>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Disassembly of stack frame 15 at windows.storage.dll!CRegFolder::BindToObject + 0x174<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="Disassembly"><table><tr><td class="DisassemblyAddress">751593db </td><td class="DisassemblyOpcode">66833f00        </td><td class="DisassemblyInstruction">cmp     word ptr [edi],0</td></tr>
+<tr><td class="DisassemblyAddress">751593df </td><td class="DisassemblyOpcode">0f859a010000    </td><td class="DisassemblyInstruction">jne     windows_storage!CRegFolder::BindToObject+0x24f (7515957f)</td></tr>
+<tr><td class="DisassemblyAddress">751593e5 </td><td class="DisassemblyOpcode">33c9            </td><td class="DisassemblyInstruction">xor     ecx,ecx</td></tr>
+<tr><td class="DisassemblyAddress">751593e7 </td><td class="DisassemblyOpcode">83f807          </td><td class="DisassemblyInstruction">cmp     eax,7</td></tr>
+<tr><td class="DisassemblyAddress">751593ea </td><td class="DisassemblyOpcode">7612            </td><td class="DisassemblyInstruction">jbe     windows_storage!CRegFolder::BindToObject+0xce (751593fe)</td></tr>
+<tr><td class="DisassemblyAddress">751593ec </td><td class="DisassemblyOpcode">0fb75204        </td><td class="DisassemblyInstruction">movzx   edx,word ptr [edx+4]</td></tr>
+<tr><td class="DisassemblyAddress">751593f0 </td><td class="DisassemblyOpcode">8d4226          </td><td class="DisassemblyInstruction">lea     eax,[edx+26h]</td></tr>
+<tr><td class="DisassemblyAddress">751593f3 </td><td class="DisassemblyOpcode">3bd8            </td><td class="DisassemblyInstruction">cmp     ebx,eax</td></tr>
+<tr><td class="DisassemblyAddress">751593f5 </td><td class="DisassemblyOpcode">0f8324030000    </td><td class="DisassemblyInstruction">jae     windows_storage!CRegFolder::BindToObject+0x3ef (7515971f)</td></tr>
+<tr><td class="DisassemblyAddress">751593fb </td><td class="DisassemblyOpcode">8b55b4          </td><td class="DisassemblyInstruction">mov     edx,dword ptr [ebp-4Ch]</td></tr>
+<tr><td class="DisassemblyAddress">751593fe </td><td class="DisassemblyOpcode">8b5db8          </td><td class="DisassemblyInstruction">mov     ebx,dword ptr [ebp-48h]</td></tr>
+<tr><td class="DisassemblyAddress">75159401 </td><td class="DisassemblyOpcode">f7d9            </td><td class="DisassemblyInstruction">neg     ecx</td></tr>
+<tr><td class="DisassemblyAddress">75159403 </td><td class="DisassemblyOpcode">1bc9            </td><td class="DisassemblyInstruction">sbb     ecx,ecx</td></tr>
+<tr><td class="DisassemblyAddress">75159405 </td><td class="DisassemblyOpcode">85ca            </td><td class="DisassemblyInstruction">test    edx,ecx</td></tr>
+<tr><td class="DisassemblyAddress">75159407 </td><td class="DisassemblyOpcode">7556            </td><td class="DisassemblyInstruction">jne     windows_storage!CRegFolder::BindToObject+0x12f (7515945f)</td></tr>
+<tr><td class="DisassemblyAddress">75159409 </td><td class="DisassemblyOpcode">8bcb            </td><td class="DisassemblyInstruction">mov     ecx,ebx</td></tr>
+<tr><td class="DisassemblyAddress">7515940b </td><td class="DisassemblyOpcode">ba1c700c75      </td><td class="DisassemblyInstruction">mov     edx,offset windows_storage!IID_IIdentityName (750c701c)</td></tr>
+<tr><td class="DisassemblyAddress">75159410 </td><td class="DisassemblyOpcode">be0c000000      </td><td class="DisassemblyInstruction">mov     esi,0Ch</td></tr>
+<tr><td class="DisassemblyAddress">75159415 </td><td class="DisassemblyOpcode">8b01            </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ecx]</td></tr>
+<tr><td class="DisassemblyAddress">75159417 </td><td class="DisassemblyOpcode">3b02            </td><td class="DisassemblyInstruction">cmp     eax,dword ptr [edx]</td></tr>
+<tr><td class="DisassemblyAddress">75159419 </td><td class="DisassemblyOpcode">0f8584030000    </td><td class="DisassemblyInstruction">jne     windows_storage!CRegFolder::BindToObject+0x473 (751597a3)</td></tr>
+<tr><td class="DisassemblyAddress">7515941f </td><td class="DisassemblyOpcode">83c104          </td><td class="DisassemblyInstruction">add     ecx,4</td></tr>
+<tr><td class="DisassemblyAddress">75159422 </td><td class="DisassemblyOpcode">83c204          </td><td class="DisassemblyInstruction">add     edx,4</td></tr>
+<tr><td class="DisassemblyAddress">75159425 </td><td class="DisassemblyOpcode">83ee04          </td><td class="DisassemblyInstruction">sub     esi,4</td></tr>
+<tr><td class="DisassemblyAddress">75159428 </td><td class="DisassemblyOpcode">73eb            </td><td class="DisassemblyInstruction">jae     windows_storage!CRegFolder::BindToObject+0xe5 (75159415)</td></tr>
+<tr><td class="DisassemblyAddress">7515942a </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">7515942c </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">7515942e </td><td class="DisassemblyOpcode">0f84c3030000    </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::BindToObject+0x4c7 (751597f7)</td></tr>
+<tr><td class="DisassemblyAddress">75159434 </td><td class="DisassemblyOpcode">8bcb            </td><td class="DisassemblyInstruction">mov     ecx,ebx</td></tr>
+<tr><td class="DisassemblyAddress">75159436 </td><td class="DisassemblyOpcode">ba2c700c75      </td><td class="DisassemblyInstruction">mov     edx,offset windows_storage!IID_IDelegateItem (750c702c)</td></tr>
+<tr><td class="DisassemblyAddress">7515943b </td><td class="DisassemblyOpcode">be0c000000      </td><td class="DisassemblyInstruction">mov     esi,0Ch</td></tr>
+<tr><td class="DisassemblyAddress">75159440 </td><td class="DisassemblyOpcode">8b01            </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ecx]</td></tr>
+<tr><td class="DisassemblyAddress">75159442 </td><td class="DisassemblyOpcode">3b02            </td><td class="DisassemblyInstruction">cmp     eax,dword ptr [edx]</td></tr>
+<tr><td class="DisassemblyAddress">75159444 </td><td class="DisassemblyOpcode">0f8583030000    </td><td class="DisassemblyInstruction">jne     windows_storage!CRegFolder::BindToObject+0x49d (751597cd)</td></tr>
+<tr><td class="DisassemblyAddress">7515944a </td><td class="DisassemblyOpcode">83c104          </td><td class="DisassemblyInstruction">add     ecx,4</td></tr>
+<tr><td class="DisassemblyAddress">7515944d </td><td class="DisassemblyOpcode">83c204          </td><td class="DisassemblyInstruction">add     edx,4</td></tr>
+<tr><td class="DisassemblyAddress">75159450 </td><td class="DisassemblyOpcode">83ee04          </td><td class="DisassemblyInstruction">sub     esi,4</td></tr>
+<tr><td class="DisassemblyAddress">75159453 </td><td class="DisassemblyOpcode">73eb            </td><td class="DisassemblyInstruction">jae     windows_storage!CRegFolder::BindToObject+0x110 (75159440)</td></tr>
+<tr><td class="DisassemblyAddress">75159455 </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">75159457 </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">75159459 </td><td class="DisassemblyOpcode">0f8498030000    </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::BindToObject+0x4c7 (751597f7)</td></tr>
+<tr><td class="DisassemblyAddress">7515945f </td><td class="DisassemblyOpcode">8bcb            </td><td class="DisassemblyInstruction">mov     ecx,ebx</td></tr>
+<tr><td class="DisassemblyAddress">75159461 </td><td class="DisassemblyOpcode">bab09b0b75      </td><td class="DisassemblyInstruction">mov     edx,offset windows_storage!IID_ICapabilities (750b9bb0)</td></tr>
+<tr><td class="DisassemblyAddress">75159466 </td><td class="DisassemblyOpcode">be0c000000      </td><td class="DisassemblyInstruction">mov     esi,0Ch</td></tr>
+<tr><td class="DisassemblyAddress">7515946b </td><td class="DisassemblyOpcode">eb03            </td><td class="DisassemblyInstruction">jmp     windows_storage!CRegFolder::BindToObject+0x140 (75159470)</td></tr>
+<tr><td class="DisassemblyAddress">7515946d </td><td class="DisassemblyOpcode">8d4900          </td><td class="DisassemblyInstruction">lea     ecx,[ecx]</td></tr>
+<tr><td class="DisassemblyAddress">75159470 </td><td class="DisassemblyOpcode">8b01            </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ecx]</td></tr>
+<tr><td class="DisassemblyAddress">75159472 </td><td class="DisassemblyOpcode">3b02            </td><td class="DisassemblyInstruction">cmp     eax,dword ptr [edx]</td></tr>
+<tr><td class="DisassemblyAddress">75159474 </td><td class="DisassemblyOpcode">0f85ff020000    </td><td class="DisassemblyInstruction">jne     windows_storage!CRegFolder::BindToObject+0x449 (75159779)</td></tr>
+<tr><td class="DisassemblyAddress">7515947a </td><td class="DisassemblyOpcode">83c104          </td><td class="DisassemblyInstruction">add     ecx,4</td></tr>
+<tr><td class="DisassemblyAddress">7515947d </td><td class="DisassemblyOpcode">83c204          </td><td class="DisassemblyInstruction">add     edx,4</td></tr>
+<tr><td class="DisassemblyAddress">75159480 </td><td class="DisassemblyOpcode">83ee04          </td><td class="DisassemblyInstruction">sub     esi,4</td></tr>
+<tr><td class="DisassemblyAddress">75159483 </td><td class="DisassemblyOpcode">73eb            </td><td class="DisassemblyInstruction">jae     windows_storage!CRegFolder::BindToObject+0x140 (75159470)</td></tr>
+<tr><td class="DisassemblyAddress">75159485 </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">75159487 </td><td class="DisassemblyOpcode">ff75bc          </td><td class="DisassemblyInstruction">push    dword ptr [ebp-44h]</td></tr>
+<tr><td class="DisassemblyAddress">7515948a </td><td class="DisassemblyOpcode">53              </td><td class="DisassemblyInstruction">push    ebx</td></tr>
+<tr><td class="DisassemblyAddress">7515948b </td><td class="DisassemblyOpcode">8b5db4          </td><td class="DisassemblyInstruction">mov     ebx,dword ptr [ebp-4Ch]</td></tr>
+<tr><td class="DisassemblyAddress">7515948e </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">75159490 </td><td class="DisassemblyOpcode">0f8491181600    </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::BindToObject+0x1619f7 (752bad27)</td></tr>
+<tr><td class="DisassemblyAddress">75159496 </td><td class="DisassemblyOpcode">ff75b0          </td><td class="DisassemblyInstruction">push    dword ptr [ebp-50h]</td></tr>
+<tr><td class="DisassemblyAddress">75159499 </td><td class="DisassemblyOpcode">8b7de4          </td><td class="DisassemblyInstruction">mov     edi,dword ptr [ebp-1Ch]</td></tr>
+<tr><td class="DisassemblyAddress">7515949c </td><td class="DisassemblyOpcode">8bcf            </td><td class="DisassemblyInstruction">mov     ecx,edi</td></tr>
+<tr><td class="DisassemblyAddress">7515949e </td><td class="DisassemblyOpcode">53              </td><td class="DisassemblyInstruction">push    ebx</td></tr>
+<tr><td class="DisassemblyAddress">7515949f </td><td class="DisassemblyOpcode">e89c050000      </td><td class="DisassemblyInstruction">call    windows_storage!CRegFolder::_CreateCachedRegFolder (75159a40) <span class="Important">// call</span></td></tr>
+<tr><td class="DisassemblyAddress Important">751594a4 </td><td class="DisassemblyOpcode Important">8945e4          </td><td class="DisassemblyInstruction Important">mov     dword ptr [ebp-1Ch],eax // return address</td></tr>
+<tr><td class="DisassemblyAddress">751594a7 </td><td class="DisassemblyOpcode">3d02400080      </td><td class="DisassemblyInstruction">cmp     eax,80004002h</td></tr>
+<tr><td class="DisassemblyAddress">751594ac </td><td class="DisassemblyOpcode">0f840b020000    </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::BindToObject+0x38d (751596bd)</td></tr>
+<tr><td class="DisassemblyAddress">751594b2 </td><td class="DisassemblyOpcode">8b7de4          </td><td class="DisassemblyInstruction">mov     edi,dword ptr [ebp-1Ch]</td></tr>
+<tr><td class="DisassemblyAddress">751594b5 </td><td class="DisassemblyOpcode">ff75e0          </td><td class="DisassemblyInstruction">push    dword ptr [ebp-20h]</td></tr>
+<tr><td class="DisassemblyAddress">751594b8 </td><td class="DisassemblyOpcode">ff159c356075    </td><td class="DisassemblyInstruction">call    dword ptr [windows_storage!_imp__CoTaskMemFree (7560359c)]</td></tr>
+<tr><td class="DisassemblyAddress">751594be </td><td class="DisassemblyOpcode">895dc8          </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-38h],ebx</td></tr>
+<tr><td class="DisassemblyAddress">751594c1 </td><td class="DisassemblyOpcode">8b5db8          </td><td class="DisassemblyInstruction">mov     ebx,dword ptr [ebp-48h]</td></tr>
+<tr><td class="DisassemblyAddress">751594c4 </td><td class="DisassemblyOpcode">85ff            </td><td class="DisassemblyInstruction">test    edi,edi</td></tr>
+<tr><td class="DisassemblyAddress">751594c6 </td><td class="DisassemblyOpcode">7857            </td><td class="DisassemblyInstruction">js      windows_storage!CRegFolder::BindToObject+0x1ef (7515951f)</td></tr>
+<tr><td class="DisassemblyAddress">751594c8 </td><td class="DisassemblyOpcode">b93c740c75      </td><td class="DisassemblyInstruction">mov     ecx,offset windows_storage!IID_IPropertyStoreFactory (750c743c)</td></tr>
+<tr><td class="DisassemblyAddress">751594cd </td><td class="DisassemblyOpcode">8bd3            </td><td class="DisassemblyInstruction">mov     edx,ebx</td></tr>
+<tr><td class="DisassemblyAddress">751594cf </td><td class="DisassemblyOpcode">be0c000000      </td><td class="DisassemblyInstruction">mov     esi,0Ch</td></tr>
+<tr><td class="DisassemblyAddress">751594d4 </td><td class="DisassemblyOpcode">8b01            </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ecx]</td></tr>
+<tr><td class="DisassemblyAddress">751594d6 </td><td class="DisassemblyOpcode">3b02            </td><td class="DisassemblyInstruction">cmp     eax,dword ptr [edx]</td></tr>
+<tr><td class="DisassemblyAddress">751594d8 </td><td class="DisassemblyOpcode">0f858b010000    </td><td class="DisassemblyInstruction">jne     windows_storage!CRegFolder::BindToObject+0x339 (75159669)</td></tr>
+<tr><td class="DisassemblyAddress">751594de </td><td class="DisassemblyOpcode">83c104          </td><td class="DisassemblyInstruction">add     ecx,4</td></tr>
+<tr><td class="DisassemblyAddress">751594e1 </td><td class="DisassemblyOpcode">83c204          </td><td class="DisassemblyInstruction">add     edx,4</td></tr>
+<tr><td class="DisassemblyAddress">751594e4 </td><td class="DisassemblyOpcode">83ee04          </td><td class="DisassemblyInstruction">sub     esi,4</td></tr>
+<tr><td class="DisassemblyAddress">751594e7 </td><td class="DisassemblyOpcode">73eb            </td><td class="DisassemblyInstruction">jae     windows_storage!CRegFolder::BindToObject+0x1a4 (751594d4)</td></tr>
+<tr><td class="DisassemblyAddress">751594e9 </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">751594eb </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">751594ed </td><td class="DisassemblyOpcode">0f84e4030000    </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::BindToObject+0x5a7 (751598d7)</td></tr>
+<tr><td class="DisassemblyAddress">751594f3 </td><td class="DisassemblyOpcode">bafc730c75      </td><td class="DisassemblyInstruction">mov     edx,offset windows_storage!IID_IPropertyStore (750c73fc)</td></tr>
+<tr><td class="DisassemblyAddress">751594f8 </td><td class="DisassemblyOpcode">8bc3            </td><td class="DisassemblyInstruction">mov     eax,ebx</td></tr>
+<tr><td class="DisassemblyAddress">751594fa </td><td class="DisassemblyOpcode">be0c000000      </td><td class="DisassemblyInstruction">mov     esi,0Ch</td></tr>
+<tr><td class="DisassemblyAddress">751594ff </td><td class="DisassemblyOpcode">90              </td><td class="DisassemblyInstruction">nop</td></tr>
+<tr><td class="DisassemblyAddress">75159500 </td><td class="DisassemblyOpcode">8b0a            </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [edx]</td></tr>
+<tr><td class="DisassemblyAddress">75159502 </td><td class="DisassemblyOpcode">3b08            </td><td class="DisassemblyInstruction">cmp     ecx,dword ptr [eax]</td></tr>
+<tr><td class="DisassemblyAddress">75159504 </td><td class="DisassemblyOpcode">0f8589010000    </td><td class="DisassemblyInstruction">jne     windows_storage!CRegFolder::BindToObject+0x363 (75159693)</td></tr>
+<tr><td class="DisassemblyAddress">7515950a </td><td class="DisassemblyOpcode">83c204          </td><td class="DisassemblyInstruction">add     edx,4</td></tr>
+<tr><td class="DisassemblyAddress">7515950d </td><td class="DisassemblyOpcode">83c004          </td><td class="DisassemblyInstruction">add     eax,4</td></tr>
+<tr><td class="DisassemblyAddress">75159510 </td><td class="DisassemblyOpcode">83ee04          </td><td class="DisassemblyInstruction">sub     esi,4</td></tr>
+<tr><td class="DisassemblyAddress">75159513 </td><td class="DisassemblyOpcode">73eb            </td><td class="DisassemblyInstruction">jae     windows_storage!CRegFolder::BindToObject+0x1d0 (75159500)</td></tr>
+<tr><td class="DisassemblyAddress">75159515 </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">75159517 </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">75159519 </td><td class="DisassemblyOpcode">0f84b8030000    </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::BindToObject+0x5a7 (751598d7)</td></tr>
+<tr><td class="DisassemblyAddress">7515951f </td><td class="DisassemblyOpcode">8bc7            </td><td class="DisassemblyInstruction">mov     eax,edi</td></tr>
+<tr><td class="DisassemblyAddress">75159521 </td><td class="DisassemblyOpcode">8b4df4          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [ebp-0Ch]</td></tr>
+<tr><td class="DisassemblyAddress">75159524 </td><td class="DisassemblyOpcode">64890d00000000  </td><td class="DisassemblyInstruction">mov     dword ptr fs:[0],ecx</td></tr>
+<tr><td class="DisassemblyAddress">7515952b </td><td class="DisassemblyOpcode">59              </td><td class="DisassemblyInstruction">pop     ecx</td></tr>
+<tr><td class="DisassemblyAddress">7515952c </td><td class="DisassemblyOpcode">5f              </td><td class="DisassemblyInstruction">pop     edi</td></tr>
+<tr><td class="DisassemblyAddress">7515952d </td><td class="DisassemblyOpcode">5e              </td><td class="DisassemblyInstruction">pop     esi</td></tr>
+<tr><td class="DisassemblyAddress">7515952e </td><td class="DisassemblyOpcode">5b              </td><td class="DisassemblyInstruction">pop     ebx</td></tr>
+<tr><td class="DisassemblyAddress">7515952f </td><td class="DisassemblyOpcode">8b4df0          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [ebp-10h]</td></tr>
+<tr><td class="DisassemblyAddress">75159532 </td><td class="DisassemblyOpcode">33cd            </td><td class="DisassemblyInstruction">xor     ecx,ebp</td></tr>
+<tr><td class="DisassemblyAddress">75159534 </td><td class="DisassemblyOpcode">e817150e00      </td><td class="DisassemblyInstruction">call    windows_storage!__security_check_cookie (7523aa50)</td></tr>
+<tr><td class="DisassemblyAddress">75159539 </td><td class="DisassemblyOpcode">8be5            </td><td class="DisassemblyInstruction">mov     esp,ebp</td></tr>
+<tr><td class="DisassemblyAddress">7515953b </td><td class="DisassemblyOpcode">5d              </td><td class="DisassemblyInstruction">pop     ebp</td></tr>
+<tr><td class="DisassemblyAddress">7515953c </td><td class="DisassemblyOpcode">c21400          </td><td class="DisassemblyInstruction">ret     14h</td></tr></table></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Disassembly of stack frame 16 at windows.storage.dll!CRegFolder::_CreateCachedRegFolder + 0x162<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="Disassembly"><table><tr><td class="DisassemblyAddress">75159ae0 </td><td class="DisassemblyOpcode">8b01            </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ecx]</td></tr>
+<tr><td class="DisassemblyAddress">75159ae2 </td><td class="DisassemblyOpcode">3b02            </td><td class="DisassemblyInstruction">cmp     eax,dword ptr [edx]</td></tr>
+<tr><td class="DisassemblyAddress">75159ae4 </td><td class="DisassemblyOpcode">7510            </td><td class="DisassemblyInstruction">jne     windows_storage!CRegFolder::_CreateCachedRegFolder+0xb6 (75159af6)</td></tr>
+<tr><td class="DisassemblyAddress">75159ae6 </td><td class="DisassemblyOpcode">83c104          </td><td class="DisassemblyInstruction">add     ecx,4</td></tr>
+<tr><td class="DisassemblyAddress">75159ae9 </td><td class="DisassemblyOpcode">83c204          </td><td class="DisassemblyInstruction">add     edx,4</td></tr>
+<tr><td class="DisassemblyAddress">75159aec </td><td class="DisassemblyOpcode">83ee04          </td><td class="DisassemblyInstruction">sub     esi,4</td></tr>
+<tr><td class="DisassemblyAddress">75159aef </td><td class="DisassemblyOpcode">73ef            </td><td class="DisassemblyInstruction">jae     windows_storage!CRegFolder::_CreateCachedRegFolder+0xa0 (75159ae0)</td></tr>
+<tr><td class="DisassemblyAddress">75159af1 </td><td class="DisassemblyOpcode">bf01000000      </td><td class="DisassemblyInstruction">mov     edi,1</td></tr>
+<tr><td class="DisassemblyAddress">75159af6 </td><td class="DisassemblyOpcode">8b75ec          </td><td class="DisassemblyInstruction">mov     esi,dword ptr [ebp-14h]</td></tr>
+<tr><td class="DisassemblyAddress">75159af9 </td><td class="DisassemblyOpcode">8b8570ffffff    </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ebp-90h]</td></tr>
+<tr><td class="DisassemblyAddress">75159aff </td><td class="DisassemblyOpcode">f7df            </td><td class="DisassemblyInstruction">neg     edi</td></tr>
+<tr><td class="DisassemblyAddress">75159b01 </td><td class="DisassemblyOpcode">1bff            </td><td class="DisassemblyInstruction">sbb     edi,edi</td></tr>
+<tr><td class="DisassemblyAddress">75159b03 </td><td class="DisassemblyOpcode">23fb            </td><td class="DisassemblyInstruction">and     edi,ebx</td></tr>
+<tr><td class="DisassemblyAddress">75159b05 </td><td class="DisassemblyOpcode">0f84c9000000    </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::_CreateCachedRegFolder+0x194 (75159bd4)</td></tr>
+<tr><td class="DisassemblyAddress">75159b0b </td><td class="DisassemblyOpcode">c745e800000000  </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-18h],0</td></tr>
+<tr><td class="DisassemblyAddress">75159b12 </td><td class="DisassemblyOpcode">c745fc00000000  </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-4],0</td></tr>
+<tr><td class="DisassemblyAddress">75159b19 </td><td class="DisassemblyOpcode">8b4de8          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [ebp-18h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b1c </td><td class="DisassemblyOpcode">85c9            </td><td class="DisassemblyInstruction">test    ecx,ecx</td></tr>
+<tr><td class="DisassemblyAddress">75159b1e </td><td class="DisassemblyOpcode">7417            </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::_CreateCachedRegFolder+0xf7 (75159b37)</td></tr>
+<tr><td class="DisassemblyAddress">75159b20 </td><td class="DisassemblyOpcode">c745e800000000  </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-18h],0</td></tr>
+<tr><td class="DisassemblyAddress">75159b27 </td><td class="DisassemblyOpcode">8b01            </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ecx]</td></tr>
+<tr><td class="DisassemblyAddress">75159b29 </td><td class="DisassemblyOpcode">51              </td><td class="DisassemblyInstruction">push    ecx</td></tr>
+<tr><td class="DisassemblyAddress">75159b2a </td><td class="DisassemblyOpcode">8b7008          </td><td class="DisassemblyInstruction">mov     esi,dword ptr [eax+8]</td></tr>
+<tr><td class="DisassemblyAddress">75159b2d </td><td class="DisassemblyOpcode">8bce            </td><td class="DisassemblyInstruction">mov     ecx,esi</td></tr>
+<tr><td class="DisassemblyAddress">75159b2f </td><td class="DisassemblyOpcode">ff15dcda5f75    </td><td class="DisassemblyInstruction">call    dword ptr [windows_storage!__guard_check_icall_fptr (755fdadc)]</td></tr>
+<tr><td class="DisassemblyAddress">75159b35 </td><td class="DisassemblyOpcode">ffd6            </td><td class="DisassemblyInstruction">call    esi</td></tr>
+<tr><td class="DisassemblyAddress">75159b37 </td><td class="DisassemblyOpcode">8d45e8          </td><td class="DisassemblyInstruction">lea     eax,[ebp-18h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b3a </td><td class="DisassemblyOpcode">50              </td><td class="DisassemblyInstruction">push    eax</td></tr>
+<tr><td class="DisassemblyAddress">75159b3b </td><td class="DisassemblyOpcode">57              </td><td class="DisassemblyInstruction">push    edi</td></tr>
+<tr><td class="DisassemblyAddress">75159b3c </td><td class="DisassemblyOpcode">8b7dec          </td><td class="DisassemblyInstruction">mov     edi,dword ptr [ebp-14h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b3f </td><td class="DisassemblyOpcode">8bcf            </td><td class="DisassemblyInstruction">mov     ecx,edi</td></tr>
+<tr><td class="DisassemblyAddress">75159b41 </td><td class="DisassemblyOpcode">e83d7a0f00      </td><td class="DisassemblyInstruction">call    windows_storage!CRegFolder::_GetCachedDelegateFolder (75251583)</td></tr>
+<tr><td class="DisassemblyAddress">75159b46 </td><td class="DisassemblyOpcode">8bf0            </td><td class="DisassemblyInstruction">mov     esi,eax</td></tr>
+<tr><td class="DisassemblyAddress">75159b48 </td><td class="DisassemblyOpcode">85f6            </td><td class="DisassemblyInstruction">test    esi,esi</td></tr>
+<tr><td class="DisassemblyAddress">75159b4a </td><td class="DisassemblyOpcode">785c            </td><td class="DisassemblyInstruction">js      windows_storage!CRegFolder::_CreateCachedRegFolder+0x168 (75159ba8)</td></tr>
+<tr><td class="DisassemblyAddress">75159b4c </td><td class="DisassemblyOpcode">8b4f70          </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [edi+70h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b4f </td><td class="DisassemblyOpcode">8b7de0          </td><td class="DisassemblyInstruction">mov     edi,dword ptr [ebp-20h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b52 </td><td class="DisassemblyOpcode">85c9            </td><td class="DisassemblyInstruction">test    ecx,ecx</td></tr>
+<tr><td class="DisassemblyAddress">75159b54 </td><td class="DisassemblyOpcode">742b            </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::_CreateCachedRegFolder+0x141 (75159b81)</td></tr>
+<tr><td class="DisassemblyAddress">75159b56 </td><td class="DisassemblyOpcode">ffb56cffffff    </td><td class="DisassemblyInstruction">push    dword ptr [ebp-94h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b5c </td><td class="DisassemblyOpcode">8b01            </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ecx]</td></tr>
+<tr><td class="DisassemblyAddress">75159b5e </td><td class="DisassemblyOpcode">ffb570ffffff    </td><td class="DisassemblyInstruction">push    dword ptr [ebp-90h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b64 </td><td class="DisassemblyOpcode">57              </td><td class="DisassemblyInstruction">push    edi</td></tr>
+<tr><td class="DisassemblyAddress">75159b65 </td><td class="DisassemblyOpcode">8b7018          </td><td class="DisassemblyInstruction">mov     esi,dword ptr [eax+18h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b68 </td><td class="DisassemblyOpcode">53              </td><td class="DisassemblyInstruction">push    ebx</td></tr>
+<tr><td class="DisassemblyAddress">75159b69 </td><td class="DisassemblyOpcode">ff75e8          </td><td class="DisassemblyInstruction">push    dword ptr [ebp-18h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b6c </td><td class="DisassemblyOpcode">51              </td><td class="DisassemblyInstruction">push    ecx</td></tr>
+<tr><td class="DisassemblyAddress">75159b6d </td><td class="DisassemblyOpcode">8bce            </td><td class="DisassemblyInstruction">mov     ecx,esi</td></tr>
+<tr><td class="DisassemblyAddress">75159b6f </td><td class="DisassemblyOpcode">ff15dcda5f75    </td><td class="DisassemblyInstruction">call    dword ptr [windows_storage!__guard_check_icall_fptr (755fdadc)]</td></tr>
+<tr><td class="DisassemblyAddress">75159b75 </td><td class="DisassemblyOpcode">ffd6            </td><td class="DisassemblyInstruction">call    esi</td></tr>
+<tr><td class="DisassemblyAddress">75159b77 </td><td class="DisassemblyOpcode">8bf0            </td><td class="DisassemblyInstruction">mov     esi,eax</td></tr>
+<tr><td class="DisassemblyAddress">75159b79 </td><td class="DisassemblyOpcode">81fe01400080    </td><td class="DisassemblyInstruction">cmp     esi,80004001h</td></tr>
+<tr><td class="DisassemblyAddress">75159b7f </td><td class="DisassemblyOpcode">7523            </td><td class="DisassemblyInstruction">jne     windows_storage!CRegFolder::_CreateCachedRegFolder+0x164 (75159ba4)</td></tr>
+<tr><td class="DisassemblyAddress">75159b81 </td><td class="DisassemblyOpcode">ffb56cffffff    </td><td class="DisassemblyInstruction">push    dword ptr [ebp-94h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b87 </td><td class="DisassemblyOpcode">8b45e8          </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ebp-18h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b8a </td><td class="DisassemblyOpcode">ffb570ffffff    </td><td class="DisassemblyInstruction">push    dword ptr [ebp-90h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b90 </td><td class="DisassemblyOpcode">57              </td><td class="DisassemblyInstruction">push    edi</td></tr>
+<tr><td class="DisassemblyAddress">75159b91 </td><td class="DisassemblyOpcode">8b08            </td><td class="DisassemblyInstruction">mov     ecx,dword ptr [eax]</td></tr>
+<tr><td class="DisassemblyAddress">75159b93 </td><td class="DisassemblyOpcode">53              </td><td class="DisassemblyInstruction">push    ebx</td></tr>
+<tr><td class="DisassemblyAddress">75159b94 </td><td class="DisassemblyOpcode">50              </td><td class="DisassemblyInstruction">push    eax</td></tr>
+<tr><td class="DisassemblyAddress">75159b95 </td><td class="DisassemblyOpcode">8b7114          </td><td class="DisassemblyInstruction">mov     esi,dword ptr [ecx+14h]</td></tr>
+<tr><td class="DisassemblyAddress">75159b98 </td><td class="DisassemblyOpcode">8bce            </td><td class="DisassemblyInstruction">mov     ecx,esi</td></tr>
+<tr><td class="DisassemblyAddress">75159b9a </td><td class="DisassemblyOpcode">ff15dcda5f75    </td><td class="DisassemblyInstruction">call    dword ptr [windows_storage!__guard_check_icall_fptr (755fdadc)]</td></tr>
+<tr><td class="DisassemblyAddress">75159ba0 </td><td class="DisassemblyOpcode">ffd6            </td><td class="DisassemblyInstruction">call    esi <span class="Important">// call</span></td></tr>
+<tr><td class="DisassemblyAddress Important">75159ba2 </td><td class="DisassemblyOpcode Important">8bf0            </td><td class="DisassemblyInstruction Important">mov     esi,eax // return address</td></tr>
+<tr><td class="DisassemblyAddress">75159ba4 </td><td class="DisassemblyOpcode">85f6            </td><td class="DisassemblyInstruction">test    esi,esi</td></tr>
+<tr><td class="DisassemblyAddress">75159ba6 </td><td class="DisassemblyOpcode">7916            </td><td class="DisassemblyInstruction">jns     windows_storage!CRegFolder::_CreateCachedRegFolder+0x17e (75159bbe)</td></tr>
+<tr><td class="DisassemblyAddress">75159ba8 </td><td class="DisassemblyOpcode">8d4de8          </td><td class="DisassemblyInstruction">lea     ecx,[ebp-18h]</td></tr>
+<tr><td class="DisassemblyAddress">75159bab </td><td class="DisassemblyOpcode">c745fcffffffff  </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-4],0FFFFFFFFh</td></tr>
+<tr><td class="DisassemblyAddress">75159bb2 </td><td class="DisassemblyOpcode">e87895fdff      </td><td class="DisassemblyInstruction">call    windows_storage!&lt;lambda_dd0f191c5c7641a95391d53b854b04eb&gt;::~&lt;lambda_dd0f191c5c7641a95391d53b854b04eb&gt; (7513312f)</td></tr>
+<tr><td class="DisassemblyAddress">75159bb7 </td><td class="DisassemblyOpcode">8bc6            </td><td class="DisassemblyInstruction">mov     eax,esi</td></tr>
+<tr><td class="DisassemblyAddress">75159bb9 </td><td class="DisassemblyOpcode">e979070000      </td><td class="DisassemblyInstruction">jmp     windows_storage!CRegFolder::_CreateCachedRegFolder+0x8f7 (7515a337)</td></tr>
+<tr><td class="DisassemblyAddress">75159bbe </td><td class="DisassemblyOpcode">8d4de8          </td><td class="DisassemblyInstruction">lea     ecx,[ebp-18h]</td></tr>
+<tr><td class="DisassemblyAddress">75159bc1 </td><td class="DisassemblyOpcode">c745fcffffffff  </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-4],0FFFFFFFFh</td></tr>
+<tr><td class="DisassemblyAddress">75159bc8 </td><td class="DisassemblyOpcode">e86295fdff      </td><td class="DisassemblyInstruction">call    windows_storage!&lt;lambda_dd0f191c5c7641a95391d53b854b04eb&gt;::~&lt;lambda_dd0f191c5c7641a95391d53b854b04eb&gt; (7513312f)</td></tr>
+<tr><td class="DisassemblyAddress">75159bcd </td><td class="DisassemblyOpcode">33c0            </td><td class="DisassemblyInstruction">xor     eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">75159bcf </td><td class="DisassemblyOpcode">e963070000      </td><td class="DisassemblyInstruction">jmp     windows_storage!CRegFolder::_CreateCachedRegFolder+0x8f7 (7515a337)</td></tr>
+<tr><td class="DisassemblyAddress">75159bd4 </td><td class="DisassemblyOpcode">8bc8            </td><td class="DisassemblyInstruction">mov     ecx,eax</td></tr>
+<tr><td class="DisassemblyAddress">75159bd6 </td><td class="DisassemblyOpcode">e8cf070000      </td><td class="DisassemblyInstruction">call    windows_storage!NeverImplementedByShellFolderObject (7515a3aa)</td></tr>
+<tr><td class="DisassemblyAddress">75159bdb </td><td class="DisassemblyOpcode">84c0            </td><td class="DisassemblyInstruction">test    al,al</td></tr>
+<tr><td class="DisassemblyAddress">75159bdd </td><td class="DisassemblyOpcode">740a            </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::_CreateCachedRegFolder+0x1a9 (75159be9)</td></tr>
+<tr><td class="DisassemblyAddress">75159bdf </td><td class="DisassemblyOpcode">b802400080      </td><td class="DisassemblyInstruction">mov     eax,80004002h</td></tr>
+<tr><td class="DisassemblyAddress">75159be4 </td><td class="DisassemblyOpcode">e94e070000      </td><td class="DisassemblyInstruction">jmp     windows_storage!CRegFolder::_CreateCachedRegFolder+0x8f7 (7515a337)</td></tr>
+<tr><td class="DisassemblyAddress">75159be9 </td><td class="DisassemblyOpcode">83be1c02000000  </td><td class="DisassemblyInstruction">cmp     dword ptr [esi+21Ch],0</td></tr>
+<tr><td class="DisassemblyAddress">75159bf0 </td><td class="DisassemblyOpcode">7416            </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::_CreateCachedRegFolder+0x1c8 (75159c08)</td></tr>
+<tr><td class="DisassemblyAddress">75159bf2 </td><td class="DisassemblyOpcode">53              </td><td class="DisassemblyInstruction">push    ebx</td></tr>
+<tr><td class="DisassemblyAddress">75159bf3 </td><td class="DisassemblyOpcode">8bce            </td><td class="DisassemblyInstruction">mov     ecx,esi</td></tr>
+<tr><td class="DisassemblyAddress">75159bf5 </td><td class="DisassemblyOpcode">e890673300      </td><td class="DisassemblyInstruction">call    windows_storage!CRegFolder::_IsInNameSpace (7549038a)</td></tr>
+<tr><td class="DisassemblyAddress">75159bfa </td><td class="DisassemblyOpcode">85c0            </td><td class="DisassemblyInstruction">test    eax,eax</td></tr>
+<tr><td class="DisassemblyAddress">75159bfc </td><td class="DisassemblyOpcode">750a            </td><td class="DisassemblyInstruction">jne     windows_storage!CRegFolder::_CreateCachedRegFolder+0x1c8 (75159c08)</td></tr>
+<tr><td class="DisassemblyAddress">75159bfe </td><td class="DisassemblyOpcode">b857000780      </td><td class="DisassemblyInstruction">mov     eax,80070057h</td></tr>
+<tr><td class="DisassemblyAddress">75159c03 </td><td class="DisassemblyOpcode">e92f070000      </td><td class="DisassemblyInstruction">jmp     windows_storage!CRegFolder::_CreateCachedRegFolder+0x8f7 (7515a337)</td></tr>
+<tr><td class="DisassemblyAddress">75159c08 </td><td class="DisassemblyOpcode">33f6            </td><td class="DisassemblyInstruction">xor     esi,esi</td></tr>
+<tr><td class="DisassemblyAddress">75159c0a </td><td class="DisassemblyOpcode">85db            </td><td class="DisassemblyInstruction">test    ebx,ebx</td></tr>
+<tr><td class="DisassemblyAddress">75159c0c </td><td class="DisassemblyOpcode">7458            </td><td class="DisassemblyInstruction">je      windows_storage!CRegFolder::_CreateCachedRegFolder+0x226 (75159c66)</td></tr>
+<tr><td class="DisassemblyAddress">75159c0e </td><td class="DisassemblyOpcode">0fb703          </td><td class="DisassemblyInstruction">movzx   eax,word ptr [ebx]</td></tr>
+<tr><td class="DisassemblyAddress">75159c11 </td><td class="DisassemblyOpcode">83f807          </td><td class="DisassemblyInstruction">cmp     eax,7</td></tr>
+<tr><td class="DisassemblyAddress">75159c14 </td><td class="DisassemblyOpcode">7650            </td><td class="DisassemblyInstruction">jbe     windows_storage!CRegFolder::_CreateCachedRegFolder+0x226 (75159c66)</td></tr>
+<tr><td class="DisassemblyAddress">75159c16 </td><td class="DisassemblyOpcode">0fb75304        </td><td class="DisassemblyInstruction">movzx   edx,word ptr [ebx+4]</td></tr>
+<tr><td class="DisassemblyAddress">75159c1a </td><td class="DisassemblyOpcode">8d4a26          </td><td class="DisassemblyInstruction">lea     ecx,[edx+26h]</td></tr>
+<tr><td class="DisassemblyAddress">75159c1d </td><td class="DisassemblyOpcode">3bc1            </td><td class="DisassemblyInstruction">cmp     eax,ecx</td></tr>
+<tr><td class="DisassemblyAddress">75159c1f </td><td class="DisassemblyOpcode">7245            </td><td class="DisassemblyInstruction">jb      windows_storage!CRegFolder::_CreateCachedRegFolder+0x226 (75159c66)</td></tr>
+<tr><td class="DisassemblyAddress">75159c21 </td><td class="DisassemblyOpcode">8b441306        </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ebx+edx+6]</td></tr>
+<tr><td class="DisassemblyAddress">75159c25 </td><td class="DisassemblyOpcode">8d8d7cffffff    </td><td class="DisassemblyInstruction">lea     ecx,[ebp-84h]</td></tr>
+<tr><td class="DisassemblyAddress">75159c2b </td><td class="DisassemblyOpcode">89857cffffff    </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-84h],eax</td></tr>
+<tr><td class="DisassemblyAddress">75159c31 </td><td class="DisassemblyOpcode">8d7e0c          </td><td class="DisassemblyInstruction">lea     edi,[esi+0Ch]</td></tr>
+<tr><td class="DisassemblyAddress">75159c34 </td><td class="DisassemblyOpcode">8b44130a        </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ebx+edx+0Ah]</td></tr>
+<tr><td class="DisassemblyAddress">75159c38 </td><td class="DisassemblyOpcode">894580          </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-80h],eax</td></tr>
+<tr><td class="DisassemblyAddress">75159c3b </td><td class="DisassemblyOpcode">8b44130e        </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ebx+edx+0Eh]</td></tr>
+<tr><td class="DisassemblyAddress">75159c3f </td><td class="DisassemblyOpcode">894584          </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-7Ch],eax</td></tr>
+<tr><td class="DisassemblyAddress">75159c42 </td><td class="DisassemblyOpcode">8b441312        </td><td class="DisassemblyInstruction">mov     eax,dword ptr [ebx+edx+12h]</td></tr>
+<tr><td class="DisassemblyAddress">75159c46 </td><td class="DisassemblyOpcode">baacea0b75      </td><td class="DisassemblyInstruction">mov     edx,offset windows_storage!IID_IContainsDeletedItems+0x38 (750beaac)</td></tr>
+<tr><td class="DisassemblyAddress">75159c4b </td><td class="DisassemblyOpcode">894588          </td><td class="DisassemblyInstruction">mov     dword ptr [ebp-78h],eax</td></tr>
+<tr><td class="DisassemblyAddress">75159c4e </td><td class="DisassemblyOpcode">8bff            </td><td class="DisassemblyInstruction">mov     edi,edi</td></tr></table></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Binary information<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="BinaryInformation"><h2 class="SubHeader">harness.exe</h2><table><tr><td>Image path</td><td>harness.exe</td></tr><tr><td>Image name</td><td>harness.exe</td></tr><tr><td>Timestamp</td><td>Sat Nov  7 15:29:02 2020 (5FA6AF2E)</td></tr><tr><td>CheckSum</td><td>00000000</td></tr><tr><td>ImageSize</td><td>00006000</td></tr><tr><td>Translations</td><td>0000.04b0 0000.04e4 0409.04b0 0409.04e4</td></tr></table><br/>
+<br/>
+<h2 class="SubHeader">windows.storage.dll</h2><table><tr><td>Loaded symbol image file</td><td>C:\Windows\System32\windows.storage.dll</td></tr><tr><td>Image path</td><td>C:\Windows\SysWOW64\windows.storage.dll</td></tr><tr><td>Image name</td><td>windows.storage.dll</td></tr><tr><td>Timestamp</td><td>2F5E937D (This is a reproducible build file hash, not a timestamp)</td></tr><tr><td>CheckSum</td><td>0061D567</td></tr><tr><td>ImageSize</td><td>0060A000</td></tr><tr><td>File version</td><td>10.0.19041.662</td></tr><tr><td>Product version</td><td>10.0.19041.662</td></tr><tr><td>File flags</td><td>0 (Mask 3F)</td></tr><tr><td>File OS</td><td>40004 NT Win32</td></tr><tr><td>File type</td><td>2.0 Dll</td></tr><tr><td>File date</td><td>00000000.00000000</td></tr><tr><td>Translations</td><td>0409.04b0</td></tr><tr><td>CompanyName</td><td>Microsoft Corporation</td></tr><tr><td>ProductName</td><td>Microsoft&#171; Windows&#171; Operating System</td></tr><tr><td>InternalName</td><td>Windows.Storage</td></tr><tr><td>OriginalFilename</td><td>Windows.Storage.dll</td></tr><tr><td>ProductVersion</td><td>10.0.19041.662</td></tr><tr><td>FileVersion</td><td>10.0.19041.662 (WinBuild.160101.0800)</td></tr><tr><td>FileDescription</td><td>Microsoft WinRT Storage API</td></tr><tr><td>LegalCopyright</td><td>&#8976; Microsoft Corporation. All rights reserved.</td></tr></table></span>
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Block Collapsed">
+      <h1 class="BlockHeader">Application and cdb output log<span class="BlockHeaderIcon"></span></h1>
+      <div class="Content">
+        <span class="CDBOrApplicationStdOut">*** wait with pending attach</span><br/>
+<span class="CDBOrApplicationStdOut">************* Path validation summary **************</span><br/>
+<span class="CDBOrApplicationStdOut">Response                         Time (ms)     Location</span><br/>
+<span class="CDBOrApplicationStdOut">Deferred                                       cache*</span><br/>
+<span class="CDBOrApplicationStdOut">Deferred                                       srv*http://msdl.microsoft.com/download/symbols</span><br/>
+<span class="CDBOrApplicationStdOut">Symbol search path is: cache*;srv*http://msdl.microsoft.com/download/symbols</span><br/>
+<span class="CDBOrApplicationStdOut">Executable search path is: </span><br/>
+<span class="CDBOrApplicationStdOut">Page heap: pid 0x3530: page heap enabled with flags 0x2.</span><br/>
+<span class="CDBOrApplicationStdOut">Page heap: pid 0x3530: page heap enabled with flags 0x2.</span><br/>
+<span class="CDBOrApplicationStdOut">(3530.5950): Stack overflow - code c00000fd (first chance)</span><br/>
+<span class="CDBOrApplicationStdOut">First chance exceptions are reported before any exception handling.</span><br/>
+<span class="CDBOrApplicationStdOut">This exception may be expected and handled.</span><br/>
+
+      </div>
+      <div class="CollapsedPlaceholder">&#x21D3; click on the title of a section to open or close it.</div>
+    </div>
+
+    <div class="Footer Block">
+      This report was generated using <a href="https://github.com/SkyLined/BugId">BugId version 2020-07-02 21:18</a>
+        by SkyLined</a>.<br/>
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="vertical-align: middle; float: left;" original-src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAAAfCAYAAABjyArgAAAHFUlEQVRoge2aTWsbSRrH+zysha5BAxGEXaxDgjzDzGWXpMH5AJpTQiCDLjvMbcQ4Y9asdtMblAzZDRihMGQWEg/MbeVEfrcly2rZrVa3+r0l2Vcd9AGEP8F/D+2uqW5gaWWn67+1VP/56mnmgEQYBgGH/uFdIZxP2wXtrBb3EG+tIfi4T5KQgmHYhmCLKCqiJA1CTW9BtVQoJkqNEtzuqlCNRUoeg2yJqGqiKjIAg7FMnihhOLhPvKlPHaLO9gubGFzbwPru2tY287h3dZbvN1cxdvNVaxuZJFd/9+V6TRkArfA53FwVES5wkOQjlBVRNR0GaqpwLB1WA0TdtNC/biOxonT68d12E0bVsOEYetQTRU1XUZVESFIRyiLPA6Oiijw3ZBz2+8I5NWN7FWFzHjhimVUZAGSKkE1HLB200LqaQrzd+cxE5jpWgozgRnM351H6lkKdtOCUTegmgpkTUKlVsGhWMbB0YEH8sbeOtZ2cg7kzbcDvXgpuYRIJNJ170gkgqXk0sQwLsI+AZwv7XngypoEzVJhNUykM2mEQqGhdScUCiH9Mg2rYUKzNNR0GSKBXCRysZXfxMauA/k8L868ymA2MkvssyyLRCKBRCIBlmXJ97ORWWReZUaGcJH2CeDi4T7KFZ6Cq8FuWoh9FfPACwaDiMfj4DgOPM+D53lwHId4PI5gMOj5beyrGCqSAN12IFdqFZRF/kyT97Czv+2Vih5evPLrGwQCAcdeLIZWqwV/a7VaiMWccQYCgZEgXLR9ArgklCBIR5BUx3P9cIPBIDiOQ6fT6RoA3VZWVjygZyOzqEgCNEuDrEkQpCPwQgn75QL2DnYdqejhxe4AXc+Kx+Oe+7j2/fd27zksgH7208vLeHDv/sT2CeBDsYyqIkI1FFgN0wM3Go32nNl+rdPpIBqNejzZaphQTQVVRaSkgvLinTXktt55ZGIpuUQ86+T4eCBgAMTThtFM1/5nc3P476ufPXCvXbuGmT/MYHHhEdrt9lj2PYAFWYCsyTBsHelM2gN3kNcOAzn9Mg2jbjhSIQvgK44X7xZ3sFVwtNiVCRewG3BGmdxWq0UC06CHd+3P/vFPuHE9jDt//gu+/es3YBgGHMfhx2c/gmEYrGazY9n3AK4qIlRTgd20SEALBoMwTXNkuDRkVy5CoRDspgXVVIkXFw8dL6YzClom3IDjb/F4nEycf2kDIIFpmIdnWRY/fL+Av/2wiBvXw6S7nutfOaPY9wCWNQm6rSP1NEUGz3Hc2HDd5uoWwzBIPUvBsHWixaWztI2WCT/gRCLRZdOftfhbIpEYGjBtX5YkLC488theXHjUBXlY+x7ANb0Gs2Fi/u488V5aGnieRywWA8uyYFnWA99/bXl52TMg14vn787DaphQ9Fq3TOQ3nWyC0uH3Ddht7XYbiwuPMHfzFvHoB/fuo5DPjw9YNRx5cDcR9NLjeb5nvsuyLHK5XM9r9P+7S3omMAO7aUM1FYhnKdt+eR97B7vYKmySdO19SwTdTk9P8eb1awDAyfGxRzZcnR5LIjRTRf3YJgOnvdANVuFwGK1WCzzPIxwOY2VlhVxzM41cLkeuuY2WifpxHZpHh/c96RoN+Lwg1897xwlytP0H9+7jxvUw5m7ewtzNW0QmVrNZ/PPvSVwPfTpekNMsFY2TOhk4z/NdD9NLk4fRa3oFNE7q0CwNVaU6EDCdpg0LeJw0jbbfbreR+tcTkqall5dxeno6lv3fPeDs+mgbDVcbp7HRePHv/3RtNMaxP7JEdDodmKaJcDgMjuM8EuG/5rZxJSK7foW2yucFufMC2TBBzp15J8hZUI3hghwNgS7GRKNRxONxJBIJz2Zm3GLPRdrvStPcLXIwGOxa5v3StFwuR773XwOAcDjsSdNqVJpW4Punab0084MtV7obDXqb7M9nx2n9NhpHZxuNfOm3jUa/gs+H3AlgsdZ7qzxKHcDfJt0qXzacqQKmiz1vfnnt0aOpFHsyaRi2jpouQ5AFUrKkC+/+Ys9lw5kqYIZhkHycJOXKh18/9EAepejTarV6lysNBU+ePukZFK94/+1D4vvvoJkqrDEK7p1OBxzHeQruX3z5BeymBc1SkXycvOwHvXzADMPgH4+T0CwNVtPyeLILepQjI7tpQbc0/PTzTxMNkm70d/7fTGK/32f/fScGTCCbzqHnm19ej37omXEPPdWJ4fZ6YP/fEwLoO3nnTehEgBnGkQv62D6dSQ88tk+/TDvH9rYO1VCmJgu9PHgKD94X6LQm7lzADMPgs8/nkNvIQTUV6LYOk7x4YlMvntiwm5bnxZO1zRxu37k9FbiDPGmagOnJHHTfqQB2++07t/H8xXMUy0Xq1amzbqpQDQXFchHPXzyfKlj/Q1+0Bw8CfmGAP/YJOoBPLn0QV7cz/wfb6tgzbhMVpgAAAABJRU5ErkJggg=="/></a>This copy of BugId is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a> during a trial period.<br/>Please contact the author if you wish to continue to use BugId after the trial period.
+    </div>
+  </body>
+</html>
